@@ -6,6 +6,7 @@ function Song(data) {
   this.soundcloud_id = data.soundcloud_id;
   this.tape_id = data.tape_id;
   this.duration = data.duration;
+  this.id = data.id;
 };
 
 function SongView(model){
@@ -27,9 +28,16 @@ Song.prototype.pause = function(){
     client_id: "d95ac796afeb1568792d9ff7a945e19d",
    });
     track = SC.stream("/tracks/" + this.soundcloud_id, function(sound){
-      sound.pause();
+      track.pause();
   });
 }
+
+Song.prototype.destroy = function(){
+  $.ajax({
+       type: "DELETE",
+       url: "/tapes/" + this.id,
+    });
+};
 
 function Playlist(playlist){
   this.playlist = playlist
@@ -39,8 +47,6 @@ Playlist.prototype.duration = function(){
   return // whatever all the songs durations are.
 }
 
-
-array = ["one", "two", "three", "four"]
 total_duration = 0;
 
 
@@ -60,15 +66,6 @@ total_duration = 0;
 
 
 
-// Playlist.prototype.playAll = function(){
-//   for (var i = 0; i < array.length; i++){
-//      setTimeout(function(){
-//        console.log("Firing!");
-//      }, total_duration);
-//      total_duration += 8000;
-//   }
-// }
-
 function doSetTimeout(index, duration){
   setTimeout(function(){index.play()}, duration)
 }
@@ -82,27 +79,6 @@ Playlist.prototype.playAll = function(){
 }
 
 
-
-// Playlist.prototype.playAll = function(){
-//   // ensure we play first and last
-//   playlist[0].play();  // plays first song
-//   for(var i = 0; i < playlist.length - 1; i++){
-//     var song = array[i];
-//     var nextTrack = playlist[i + 1];
-//     total_duration += song.duration;
-
-//     if(nextTrack == undefined){
-//       console.log("it's over");
-//     } else {
-//       setTimeout(function(){
-//       console.log(nextTrack, song.duration);
-//       console.log(total_duration)
-//         nextTrack.play();
-//       }, total_duration);
-//     }
-//   }
-// }
-
 //Get All Songs
 function loadSongs(){
   $.ajax({
@@ -113,22 +89,36 @@ function loadSongs(){
     for(var i = 0; i < data.length; i++){
       var newSong = new Song(data[i]);
       playlist.push(newSong);
-      var newSongView = new SongView(newSong);
-      $('<li>').text(newSongView.model.name).appendTo($('#track_list'));
+      newSongView = new SongView(newSong);
+      $('<li>').html('<span>X</span>' + newSongView.model.name).attr('id',newSongView.model.id).on('click', function(){
+         $.ajax({
+             type: "DELETE",
+             url: "/songs/" + this.id,
+          });
+          this.remove()
+
+              console.log('put delete function here');
+            }).appendTo($('#track_list'));
     }
   });
 };
 
-  loadSongs();
+window.onload = loadSongs();
+
+
 $(document).ready(function(){
   playlist = []
 
  $('.button').on('click', function(){
   // this is all playlist.playAll
   console.log('clicked');
+  $('#track_list').empty()
+  loadSongs()
+
     p = new Playlist(playlist)
     p.playAll();
   });
+
 
   SC.initialize({
     client_id: "d95ac796afeb1568792d9ff7a945e19d",
@@ -173,7 +163,10 @@ function searchForSongsOnSoundCloud() {
             id = track.id;
             duration = track.duration;
             tape_id = $('img').attr('id')
-            $('<li>').text(title).appendTo($('#track_list'));
+            $('<li>').html('<span>X</span>' + title).on('click', function(){
+              console.log('put delete function here');
+            }).appendTo($('#track_list'));
+
             $.ajax({
               type: 'POST',
               url: '/songs',
@@ -192,6 +185,18 @@ function searchForSongsOnSoundCloud() {
    });
   });
 }
+
+
+//Delete Songs From Playlist
+
+              $xSpans = $('span')
+              for( var i = 0; i < $xSpans.length; i++){
+                i.on('click', function(){
+                  console.log('put delete function here');
+                })
+              }
+
+
     // function dragSongs (el){
     //    el.draggable({
     //     drag: function( event, ui ) {
