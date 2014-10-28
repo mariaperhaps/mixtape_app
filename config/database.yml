@@ -80,6 +80,6 @@ test:
 #
 production:
   <<: *default
-  database: mixtape_app_production
-  username: mixtape_app
-  password: <%= ENV['MIXTAPE_APP_DATABASE_PASSWORD'] %>
+  # database: mixtape_app_production
+  username: db.user
+  password: db.password
