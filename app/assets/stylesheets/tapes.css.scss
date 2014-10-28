@@ -127,7 +127,7 @@ ul {
 
 
 .button-circle {
-  margin-left: 100px;
+  margin-left: 110px;
   -moz-border-radius: 240px;
   -webkit-border-radius: 240px;
   border-radius: 240px;
@@ -185,3 +185,63 @@ ul {
   padding: 0px;
   border-width: 4px;
   font-size: 16px; }
+
+
+#tracks {
+  opacity: 0.7;
+  width: 310px;
+  height: 450px;
+  border: 1px solid black;
+  display: inline-block;
+  font: normal 12px/1.5 "Lucida Grande", arial, sans-serif;
+    width: 300px;
+    margin: 0 auto 10px;
+    padding: 6px 5px 4px 42px;
+    position: absolute;
+    color: #444;
+    line-height: 20px;
+    border: 1px solid #d2d2d2;
+
+    background: #fff;
+    background: -webkit-gradient(linear, 0 0, 0 100%, from(#d9eaf3), color-stop(4%, #fff)) 0 4px;
+    background: -webkit-linear-gradient(top, #d9eaf3 0%, #fff 8%) 0 4px;
+    background: -moz-linear-gradient(top, #d9eaf3 0%, #fff 8%) 0 4px;
+    background: -ms-linear-gradient(top, #d9eaf3 0%, #fff 8%) 0 4px;
+    background: -o-linear-gradient(top, #d9eaf3 0%, #fff 8%) 0 4px;
+    background: linear-gradient(top, #d9eaf3 0%, #fff 8%) 0 4px;
+
+    -webkit-background-size: 100% 20px;
+    -moz-background-size: 100% 20px;
+    -ms-background-size: 100% 20px;
+    -o-background-size: 100% 20px;
+    background-size: 100% 20px;
+
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+
+    -webkit-box-shadow: 0 1px 2px rgba(0,0,0,0.07);
+    -moz-box-shadow: 0 1px 2px rgba(0,0,0,0.07);
+    box-shadow: 0 1px 2px rgba(0,0,0,0.07);
+}
+
+#tracks h1,
+#tracks h2 {
+    font-size: 16px;
+    line-height: 16px;
+    margin: 0 0 4px;
+}
+#tracks h3,
+#tracks h4,
+#tracks h5 {
+    font-size: 14px;
+    line-height: 16px;
+    margin: 0 0 4px;
+}
+#tracks h4,
+#tracks h5 {
+    font-weight: normal;
+}
+#tracks p {margin: 0 0 20px;}
+#tracks p:last-child {margin: 0;}
+#tracks ul {margin: 0 0 20px;}

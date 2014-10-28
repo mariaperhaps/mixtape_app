@@ -81,6 +81,7 @@ Playlist.prototype.playAll = function(){
 
 //Get All Songs
 function loadSongs(){
+  $('#track_list').empty()
   $.ajax({
     url: "/songs",
     format: "json"
@@ -163,9 +164,7 @@ function searchForSongsOnSoundCloud() {
             id = track.id;
             duration = track.duration;
             tape_id = $('img').attr('id')
-            $('<li>').html('<span>X</span>' + title).on('click', function(){
-              console.log('put delete function here');
-            }).appendTo($('#track_list'));
+            $('<li>').html('<span>X</span>' + title).appendTo($('#track_list'));
 
             $.ajax({
               type: 'POST',

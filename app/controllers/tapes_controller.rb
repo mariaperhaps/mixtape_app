@@ -7,6 +7,7 @@ class TapesController < ApplicationController
   end
 
   def show
+    @songs = Song.where(tape_id: params[:id])
   end
 
   def new
