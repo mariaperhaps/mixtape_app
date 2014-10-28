@@ -1,0 +1,31 @@
+<h1>Listing tapes</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Message</th>
+      <th>Reciever</th>
+      <th>User</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @tapes.each do |tape| %>
+      <tr>
+        <td><%= tape.name %></td>
+        <td><%= tape.message %></td>
+        <td><%= tape.receiver %></td>
+        <td><%= tape.user_id %></td>
+        <td><%= link_to 'Show', tape %></td>
+        <td><%= link_to 'Edit', edit_tape_path(tape) %></td>
+        <td><%= link_to 'Destroy', tape, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Tape', new_tape_path %>

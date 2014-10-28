@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @tape.name %>
+</p>
+
+<p>
+  <strong>Message:</strong>
+  <%= @tape.message %>
+</p>
+
+<p>
+  <strong>Reciever:</strong>
+  <%= @tape.receiver %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @tape.user_id %>
+</p>
+
+<%= link_to 'Edit', edit_tape_path(@tape) %> |
+<%= link_to 'Back', tapes_path %>

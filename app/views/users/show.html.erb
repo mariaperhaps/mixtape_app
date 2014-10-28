@@ -1,0 +1,44 @@
+<div id="user_container">
+
+Hi <%= @user.name %>
+
+<div class="tape-list">
+      <h3>Tapes</h3>
+      <ul id="tapes">
+        <% @tapes.each do |tape| %>
+          <li><%= link_to(tape.name, tape_path(tape.id)) %></li>
+        <% end %>
+      </ul>
+    </div>
+
+
+  <div id='overlay_btn'>
+  <a href='#' onclick='overlay()'>Make a New Tape</a>
+</div>
+
+  <div id='overlay'>
+     <div>
+          <h1>Give Your Tape a Name</h1>
+          <input id='customize' type='text' placeholder='name'>
+          <button id='custom-submit'>Customize</button>
+          <a id='close' href='#' onclick='overlay()'>CLOSE</a>
+     </div>
+</div>
+  <div id='tape-options'>
+    <%= image_tag('tape_01.png', id:'yellowpink') %>
+    <%= image_tag('tape_02.png', id:'clearblue') %>
+    <%= image_tag('tape_03.png', id:'redgreen') %>
+    <%= image_tag('tape_04.png', id:'yellowgreen') %>
+    <%= image_tag('tape_05.png', id:'bluewhite') %>
+    <%= image_tag('tape_06.png', id:'rainbow') %>
+    <%= image_tag('tape_07.png', id:'pink') %>
+    <%= image_tag('tape_08.png', id:'greenyellow') %>
+    <%= image_tag('tape_09.png', id:'black') %>
+    <%= image_tag('tape_10.png', id:'blue') %>
+  </div>
+<div id="edit-tape">
+</div>
+
+
+
+</div>
