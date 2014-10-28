@@ -23,7 +23,12 @@ Song.prototype.play = function(){
 }
 
 Song.prototype.pause = function(){
-  track.pause() // not sure what track is
+  SC.initialize({
+    client_id: "d95ac796afeb1568792d9ff7a945e19d",
+   });
+    track = SC.stream("/tracks/" + this.soundcloud_id, function(sound){
+      sound.pause();
+  });
 }
 
 function Playlist(playlist){
@@ -36,40 +41,45 @@ Playlist.prototype.duration = function(){
 
 
 array = ["one", "two", "three", "four"]
-total_duration = 0
-var timer = false;
+total_duration = 0;
+
 
 // function doSetTimeout(index, duration){
-//   setTimeout(function(){console.log(index)}, duration)
+//    setTimeout(function(){
+//       console.log(index, total_duration);
+//     }, total_duration);
 // }
 
 // Playlist.prototype.playAll = function(){
+//   for(i = 0; i < playlist.length; i++){
+//    setTimeout(function(x)
+//     { return function() { console.log(x, total_duration); total_duration += 2000 };
+//   }(i), total_duration*i)
+//  }
+// }
+
+
+
+// Playlist.prototype.playAll = function(){
 //   for (var i = 0; i < array.length; i++){
-//     total_duration += 4000;
-//      doSetTimeout(i, total_duration)
-//      }
+//      setTimeout(function(){
+//        console.log("Firing!");
+//      }, total_duration);
+//      total_duration += 8000;
+//   }
 // }
 
 function doSetTimeout(index, duration){
-  setTimeout(function(){console.log(index)}, duration)
+  setTimeout(function(){index.play()}, duration)
 }
 
 Playlist.prototype.playAll = function(){
   for (var i = 0; i < playlist.length; i++){
-    total_duration += playlist[i].duration;
-     doSetTimeout(i, total_duration)
+    console.log(total_duration)
+     doSetTimeout(playlist[i], total_duration)
+     total_duration += playlist[i].duration;
      }
 }
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -118,12 +128,6 @@ $(document).ready(function(){
   console.log('clicked');
     p = new Playlist(playlist)
     p.playAll();
-    // track_one = playlist[0][0]["soundcloud_id"];
-    // s1 = new Song({soundcloud_id: track_one });
-    // s1.play(); // what is play?
-    // track_two = playlist[0][1]["soundcloud_id"]
-    // s2 = new Song({soundcloud_id: track_two });
-    // setTimeout(function() {  s2.play(); }, 5000);
   });
 
   SC.initialize({
