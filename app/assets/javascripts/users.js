@@ -117,6 +117,7 @@ getUser()
 
   $('#send').on('click', function(){
     var id = $('img').attr('id')
+      console.log('sending')
          $.ajax({
           type: "POST",
           url: "/invitations",
