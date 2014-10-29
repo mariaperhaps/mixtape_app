@@ -14,20 +14,30 @@
  *= require_self
  */
 body{
-  background-color: white;
+  background-color: rgb(210, 203, 203);;
 }
+
+header {
+  height: 100px;
+}
+
 
 .nav {
-height: 50px;
-width: inherit;
-background-color: gray;
-text-align: right;
+  background: url("/assets/logo.png");
+  height: 70px;
+  width: inherit;
+  background-color: white;
+  text-align: right;
+  margin: -10px;
 }
 
-.logo {
+nav ul li {
+  display: inline;
+ }
+
+#logo {
   float: left;
-  font-size: 25px;
-  padding-top: 15px;
+  padding: 20px;
 }
 
 

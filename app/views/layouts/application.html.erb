@@ -5,27 +5,26 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+  <link href='https://fonts.googleapis.com/css?family=Permanent+Marker' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css" />
   <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
   <script src="https://connect.soundcloud.com/sdk.js"></script>
 
 </head>
 <body>
-  <ul class="nav">
+    <nav>
+    <ul class="nav">
 
-      <% if session[:user_id] %>
-        <%= link_to 'MIXTAPE', user_path(session[:user_id]), class: 'logo' %>
-      <% else %>
-        <%= link_to 'MIXTAPE', root_path, class: 'logo' %>
-      <% end %>
+        <% if session[:user_id] %>
+          <%= link_to 'Logout', session_path, method: :delete %>
+          <% else %>
+        <li class="login"><%= link_to 'Log In', login_path %></li>
+          <li class="signup"><%= link_to 'Sign Up', new_user_path %></li>
+        <% end %>
+        <%= image_tag('Logo.png', id:'logo') %>
+      </ul>
+    </nav>
 
-      <% if session[:user_id] %>
-        <%= link_to 'Logout', session_path, method: :delete %>
-        <% else %>
-      <li class="login"><%= link_to 'Log In', login_path %></li>
-        <li class="signup"><%= link_to 'Sign Up', new_user_path %></li>
-      <% end %>
-    </ul>
 
 <%= yield %>
 
