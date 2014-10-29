@@ -117,7 +117,7 @@ getUser()
 
 
   $('#send').on('click', function(){
-    var id = $('img').attr('id')
+    var id = $('img').eq(1).attr('id')
       console.log('sending')
          $.ajax({
           type: "POST",

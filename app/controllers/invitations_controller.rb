@@ -1,6 +1,7 @@
 class InvitationsController < ApplicationController
 
   def create
+    binding.pry
     tape = Tape.find(params[:id])
     receiver = tape.receiver
     message = tape.message
