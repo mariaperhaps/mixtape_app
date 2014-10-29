@@ -43,10 +43,13 @@ getUser()
 //Create A Tape
   $('#custom-submit').on('click', function(){
      console.log('works')
-     var input = $('#customize').val()
-     tape     = new Tape({ name: input });
+     var name = $('#customize').val()
+     var receiver = $('#receiver').val()
+     var message = $('#message').val()
+
+     tape     = new Tape({ name: name, receiver: receiver, message: message });
      tapeView = new TapeView(tape)
-     tape.create(input)
+     tape.create(name, receiver, message)
 
   el = document.getElementById("overlay");
     el.style.visibility = (el.style.visibility == "visible") ? "hidden" : "visible";
@@ -104,13 +107,23 @@ getUser()
     //Save Tape to Database
         $('#save').on('click', function(){
           console.log('clicked');
-          tape.updateColor(tapeSource);
+          tape.update(tapeSource);
 
         });
        }
     });
 
 
+
+  $('#send').on('click', function(){
+    var id = $('img').attr('id')
+         $.ajax({
+          type: "POST",
+          url: "/invitations",
+          format: "json",
+          data: ({id: id})
+        }).done
+  });
 
 
 });

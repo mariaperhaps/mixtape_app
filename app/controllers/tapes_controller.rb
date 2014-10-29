@@ -3,10 +3,11 @@ class TapesController < ApplicationController
 
   def index
     @tapes = Tape.where(user_id: session[:user_id])
-    render :index
+    render :json => @tapes
   end
 
   def show
+    @tape = Tape.find(params[:id])
     @songs = Song.where(tape_id: params[:id])
   end
 
@@ -19,7 +20,7 @@ class TapesController < ApplicationController
   end
 
   def create
-    Tape.create(name: params[:name], user_id: session[:user_id])
+    Tape.create(name: params[:name], user_id: session[:user_id], receiver: params[:receiver], message: params[:message])
     tapes = Tape.where(user_id: session[:user_id])
     tape = tapes.last
      respond_to do |format|
@@ -53,6 +54,6 @@ class TapesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def tape_params
-      params.permit(:name, :message, :reciever, :user_id, :img_url, :id)
+      params.permit(:name, :message, :receiver, :user_id, :img_url, :id)
     end
 end

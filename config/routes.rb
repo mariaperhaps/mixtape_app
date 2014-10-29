@@ -5,6 +5,8 @@ Rails.application.routes.draw do
 
   resources :tapes
 
+  resources :invitations
+
   root 'welcome#index'
 
   get "/login" => "sessions#new"

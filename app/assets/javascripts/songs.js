@@ -67,17 +67,6 @@ Playlist.prototype.playAll = function(){
 // window.onload = loadSongs();
 
 
- $('.button').on('click', function(){
-  // this is all playlist.playAll
-  console.log('clicked');
-  $('#track_list').empty()
-    loadSongs()
-    p = new Playlist(playlist)
-    p.playAll();
-  });
-
-  loadSongs()
-
 
 $(document).ready(function(){
   playlist = []
@@ -107,7 +96,16 @@ $(document).ready(function(){
     });
   };
 
+  loadSongs()
 
+ $('.button').on('click', function(){
+  // this is all playlist.playAll
+  console.log('clicked');
+  $('#track_list').empty()
+    loadSongs()
+    p = new Playlist(playlist)
+    p.playAll();
+  });
 
 
 
@@ -115,15 +113,6 @@ $(document).ready(function(){
     client_id: "d95ac796afeb1568792d9ff7a945e19d",
   });
 
-     // $('#track_list').append($('<p>')).text(data.name);
-
-
-  // $('#search').on('click', function(){
-  //   console.log('clicked');
-  //   $( "#slide" ).toggle( "slide",{direction:'right'} );
-  //   // $slide = $('#slide')
-  //   //   $slide.animate('slide',{direction:'right'},1000);
-  // });
 
 
 // Search for songs on Soundcloud
@@ -176,9 +165,9 @@ function searchForSongsOnSoundCloud() {
                        $.ajax({
                            type: "DELETE",
                            url: "/songs/" + this.id,
-                        });
+                        }).done (function(data){
                         this.remove()
-
+                          });
                           }).appendTo($('#track_list'));
 
               })
@@ -189,25 +178,5 @@ function searchForSongsOnSoundCloud() {
 }
 
 
-//Delete Songs From Playlist
-
-              $xSpans = $('span')
-              for( var i = 0; i < $xSpans.length; i++){
-                i.on('click', function(){
-                  console.log('put delete function here');
-                })
-              }
 
 
-    // function dragSongs (el){
-    //    el.draggable({
-    //     drag: function( event, ui ) {
-    //       console.log("dragged")
-    //     }
-    //   });
-    // }
-
-    // songs = $('.search_results')
-    // for(var i = 0; i < songs.length; i++){
-    //   dragSongs([i]);
-    // }

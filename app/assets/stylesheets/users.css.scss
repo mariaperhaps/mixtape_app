@@ -40,6 +40,17 @@ li {
   box-shadow: 8px 7px 22px -1px rgba(0,0,0,0.75);
 }
 
+#overlay_btn_send {
+  background-color: #85cddb;
+  opacity: .7;
+  padding: 10px;
+  width: 100px;
+  text-align: center;
+  border-radius: 5px;
+  margin-top: 40px;
+  box-shadow: 8px 7px 22px -1px rgba(0, 0, 0, 0.75);
+}
+
 
 #overlay {
      visibility: hidden;

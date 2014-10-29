@@ -17,19 +17,19 @@ Tape.prototype.destroy = function(){
     });
 };
 
-Tape.prototype.create = function(params){
+Tape.prototype.create = function(name, receiver, message){
   $.ajax({
        type: "POST",
        url: "/tapes",
        dataType: 'json',
-       data: {name: params}
+       data: {name: name, receiver: receiver, message: message}
     }).done (function(data){
       // console.log(data);
       currentTapeId = data.id
     })
 };
 
-Tape.prototype.updateColor = function(img_url){
+Tape.prototype.update = function(img_url){
   $.ajax({
     url: "/tapes/" + currentTapeId,
     data: {img_url: img_url},
