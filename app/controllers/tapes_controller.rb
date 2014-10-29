@@ -31,7 +31,6 @@ class TapesController < ApplicationController
   def update
     @tape
     @tape.update(img_url: params[:img_url])
-    @tape.update(receiver: params[:receiver])
     # redirect_to(edit_tape_path(@tape.id))
     render json: @tape
   end
