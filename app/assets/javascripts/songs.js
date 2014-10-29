@@ -159,7 +159,7 @@ function searchForSongsOnSoundCloud() {
                 console.log(data);
 
                     var newSong = new Song(data);
-                    playlist.push(newSong);
+                    // playlist.push(newSong);
                     newSongView = new SongView(newSong);
                     $('<li>').html('<span>X</span>' + newSongView.model.name).attr('id',newSongView.model.id).on('click', function(){
                        $.ajax({
