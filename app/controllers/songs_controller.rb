@@ -11,6 +11,8 @@ class SongsController < ApplicationController
   # GET /songs/1
   # GET /songs/1.json
   def show
+    @songs = Song.where(tape_id: params[:tape_id])
+    render :json => @songs
   end
 
   # GET /songs/new
@@ -58,7 +60,7 @@ class SongsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_song
-      @song = Song.find(params[:id])
+      @songs = Song.where(tape_id = params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

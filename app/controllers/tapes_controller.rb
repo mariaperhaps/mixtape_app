@@ -53,6 +53,6 @@ class TapesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def tape_params
-      params.permit(:name, :message, :reciever, :user_id, :img_url)
+      params.permit(:name, :message, :reciever, :user_id, :img_url, :id)
     end
 end

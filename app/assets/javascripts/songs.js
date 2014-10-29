@@ -49,23 +49,6 @@ Playlist.prototype.duration = function(){
 
 total_duration = 0;
 
-
-// function doSetTimeout(index, duration){
-//    setTimeout(function(){
-//       console.log(index, total_duration);
-//     }, total_duration);
-// }
-
-// Playlist.prototype.playAll = function(){
-//   for(i = 0; i < playlist.length; i++){
-//    setTimeout(function(x)
-//     { return function() { console.log(x, total_duration); total_duration += 2000 };
-//   }(i), total_duration*i)
-//  }
-// }
-
-
-
 function doSetTimeout(index, duration){
   setTimeout(function(){index.play()}, duration)
 }
@@ -80,45 +63,52 @@ Playlist.prototype.playAll = function(){
 
 
 //Get All Songs
-function loadSongs(){
-  $('#track_list').empty()
-  $.ajax({
-    url: "/songs",
-    format: "json"
-  }).done(function(data){
-    console.log(data);
-    for(var i = 0; i < data.length; i++){
-      var newSong = new Song(data[i]);
-      playlist.push(newSong);
-      newSongView = new SongView(newSong);
-      $('<li>').html('<span>X</span>' + newSongView.model.name).attr('id',newSongView.model.id).on('click', function(){
-         $.ajax({
-             type: "DELETE",
-             url: "/songs/" + this.id,
-          });
-          this.remove()
 
-              console.log('put delete function here');
-            }).appendTo($('#track_list'));
-    }
-  });
-};
+// window.onload = loadSongs();
 
-window.onload = loadSongs();
-
-
-$(document).ready(function(){
-  playlist = []
 
  $('.button').on('click', function(){
   // this is all playlist.playAll
   console.log('clicked');
   $('#track_list').empty()
-  loadSongs()
-
+    loadSongs()
     p = new Playlist(playlist)
     p.playAll();
   });
+
+  loadSongs()
+
+
+$(document).ready(function(){
+  playlist = []
+
+  function loadSongs(){
+    $('#track_list').empty()
+    var id = $('img').attr('id')
+    $.ajax({
+      url: "/tapes/" + id + "/songs",
+      format: "json"
+    }).done(function(data){
+      console.log(data);
+      for(var i = 0; i < data.length; i++){
+        var newSong = new Song(data[i]);
+        playlist.push(newSong);
+        newSongView = new SongView(newSong);
+        $('<li>').html('<span>X</span>' + newSongView.model.name).attr('id',newSongView.model.id).on('click', function(){
+           $.ajax({
+               type: "DELETE",
+               url: "/songs/" + this.id,
+            });
+            this.remove()
+
+                console.log('put delete function here');
+              }).appendTo($('#track_list'));
+      }
+    });
+  };
+
+
+
 
 
   SC.initialize({
@@ -164,7 +154,7 @@ function searchForSongsOnSoundCloud() {
             id = track.id;
             duration = track.duration;
             tape_id = $('img').attr('id')
-            $('<li>').html('<span>X</span>' + title).appendTo($('#track_list'));
+            // $('<li>').html('<span>X</span>' + title).appendTo($('#track_list'));
 
             $.ajax({
               type: 'POST',
@@ -177,7 +167,20 @@ function searchForSongsOnSoundCloud() {
                 duration: duration}
               }).done (function(data){
                 // appendToPlaylistView
-                console.log(data.name);
+                console.log(data);
+
+                    var newSong = new Song(data);
+                    playlist.push(newSong);
+                    newSongView = new SongView(newSong);
+                    $('<li>').html('<span>X</span>' + newSongView.model.name).attr('id',newSongView.model.id).on('click', function(){
+                       $.ajax({
+                           type: "DELETE",
+                           url: "/songs/" + this.id,
+                        });
+                        this.remove()
+
+                          }).appendTo($('#track_list'));
+
               })
         }).appendTo($('#SC_embeds'));
       });
