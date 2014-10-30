@@ -72,7 +72,7 @@ getUser()
 
     function dragTapes (el){
        el.draggable({
-        stack: '#edit-tape',
+        stack: '#yellowpink',
         drag: function( event, ui ) {
           tapeId = this.id
           console.log("dragged")
