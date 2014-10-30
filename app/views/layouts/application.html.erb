@@ -15,6 +15,12 @@
     <nav>
     <ul class="nav">
 
+       <% if session[:user_id] %>
+      <%= link_to 'MIXTAPE', user_path(session[:user_id]), class: 'logo' %>
+      <% else %>
+       <%= link_to 'MIXTAPE', root_path, class: 'logo' %>
+     <% end %>
+
         <% if session[:user_id] %>
           <%= link_to 'Logout', session_path, method: :delete %>
           <% else %>
