@@ -81,7 +81,7 @@ $(document).ready(function(){
       console.log(data);
       for(var i = 0; i < data.length; i++){
         var newSong = new Song(data[i]);
-        playlist.push(newSong);
+        // playlist.push(newSong);
         newSongView = new SongView(newSong);
         $('<li>').html('<span>X</span>' + newSongView.model.name).attr('id',newSongView.model.id).on('click', function(){
            $.ajax({
@@ -98,13 +98,30 @@ $(document).ready(function(){
 
   loadSongs()
 
+
+
+
+
  $('.button').on('click', function(){
   // this is all playlist.playAll
   console.log('clicked');
-  $('#track_list').empty()
-    loadSongs()
-    p = new Playlist(playlist)
-    p.playAll();
+
+    $('#track_list').empty()
+        console.log('clicked');
+          var id = $('img').attr('id')
+          $.ajax({
+            url: "/tapes/" + id + "/songs",
+            format: "json"
+          }).done(function(data){
+            console.log(data);
+            for(var i = 0; i < data.length; i++){
+              var newSong = new Song(data[i]);
+              playlist.push(newSong);
+
+            p = new Playlist(playlist)
+            p.playAll();
+        }
+    });
   });
 
 
