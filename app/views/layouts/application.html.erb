@@ -16,6 +16,7 @@
     <ul class="nav">
 
        <% if session[:user_id] %>
+
         <a href="/users/<%= session[:user_id] %>"><img src="/assets/Logo.png" id="logo"></a>
       <% else %>
        <a href="/"><img src="/assets/Logo.png" id="logo"></a>
