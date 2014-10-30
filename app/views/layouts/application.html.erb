@@ -16,18 +16,17 @@
     <ul class="nav">
 
        <% if session[:user_id] %>
-      <%= link_to 'MIXTAPE', user_path(session[:user_id]), class: 'logo' %>
+        <a href="/users/<%= session[:user_id] %>"><img src="/assets/Logo.png" id="logo"></a>
       <% else %>
-       <%= link_to 'MIXTAPE', root_path, class: 'logo' %>
-     <% end %>
-
+       <a href="/"><img src="/assets/Logo.png" id="logo"></a>
+      <% end %>
         <% if session[:user_id] %>
           <%= link_to 'Logout', session_path, method: :delete %>
           <% else %>
         <li class="login"><%= link_to 'Log In', login_path %></li>
           <li class="signup"><%= link_to 'Sign Up', new_user_path %></li>
         <% end %>
-        <%= image_tag('Logo.png', id:'logo') %>
+
       </ul>
     </nav>
 
