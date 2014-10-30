@@ -106,7 +106,6 @@ $(document).ready(function(){
   // this is all playlist.playAll
   console.log('clicked');
 
-    $('#track_list').empty()
         console.log('clicked');
           var id = $('img').eq(1).attr('id')
           $.ajax({
