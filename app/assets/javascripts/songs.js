@@ -73,7 +73,7 @@ $(document).ready(function(){
 
   function loadSongs(){
     $('#track_list').empty()
-    var id = $('img').attr('id')
+    var id = $('img').eq(1).attr('id')
     $.ajax({
       url: "/tapes/" + id + "/songs",
       format: "json"
@@ -108,7 +108,7 @@ $(document).ready(function(){
 
     $('#track_list').empty()
         console.log('clicked');
-          var id = $('img').attr('id')
+          var id = $('img').eq(1).attr('id')
           $.ajax({
             url: "/tapes/" + id + "/songs",
             format: "json"
@@ -159,7 +159,7 @@ function searchForSongsOnSoundCloud() {
             title = track.title;
             id = track.id;
             duration = track.duration;
-            tape_id = $('img').attr('id')
+            tape_id = $('img').eq(1).attr('id')
             // $('<li>').html('<span>X</span>' + title).appendTo($('#track_list'));
 
             $.ajax({
