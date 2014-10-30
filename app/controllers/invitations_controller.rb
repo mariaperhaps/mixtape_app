@@ -19,7 +19,7 @@ private
       :to => receiver,
       :subject => "#{sender} sent you a mixtape",
       :body => message,
-      :html_body => "<a href=#{tape_link}>website</a>",
+      :html_body => "<a href=#{tape_link}>Your Mixtape</a>",
       :via => :smtp,
       :via_options => {
         :address => 'smtp.gmail.com',
