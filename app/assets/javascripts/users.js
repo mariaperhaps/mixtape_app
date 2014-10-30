@@ -124,7 +124,9 @@ getUser()
           url: "/invitations",
           format: "json",
           data: ({id: id})
-        }).done
+        }).done (function(data){
+          console.log(data);
+   })
   });
 
 

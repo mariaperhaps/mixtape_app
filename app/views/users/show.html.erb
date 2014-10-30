@@ -6,7 +6,7 @@ Hi <%= @user.name %>
       <h3>Tapes</h3>
       <ul id="tapes">
         <% @tapes.each do |tape| %>
-          <li><%= link_to(tape.name, tape_path(tape.id)) %></li>
+          <li><%= link_to(tape.name, edit_tape_path(tape.id)) %></li>
         <% end %>
       </ul>
     </div>

@@ -9,8 +9,10 @@ class InvitationsController < ApplicationController
     user = User.find(tape.user_id)
     sender = user.name
     deliver(sender, receiver, tape_link, message)
+    render :json => id
   end
 
+private
 
     def deliver(sender, receiver, tape_link, message)
     Pony.mail({
