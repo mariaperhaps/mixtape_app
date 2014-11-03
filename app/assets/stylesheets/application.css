@@ -119,7 +119,7 @@ h1:before {
   margin-top: 10px;
   height: 900px;
   border: 1px solid black;
-  background-image: asset-data-url("splash.png");
+  background-image: url(image-path('splash.png'));
   background-size: cover;
 }
 
