@@ -8,7 +8,19 @@ function overlay() {
 }
 $(document).ready(function() {
 
-// tapeApp.tapeNum   = 0;
+// Tape li Colors
+
+// RandomColor = function() {
+//     colors = ['#7dc5fb', '#4c61ff', '#757efb', '#7556fd', '#ff567c', '#ff8c00', '#45d6bd', '#00ffaa', '#1aff87']
+//     return colors[Math.floor(Math.random()*colors.length)];
+// }
+
+// $('.tapes').css('background-color', RandomColor);
+
+
+
+
+
 
 function getUser(){
     $.ajax({
@@ -71,12 +83,14 @@ getUser()
     $blue = $('#blue');
 
     function dragTapes (el){
+          // tapeId = el.attr('id')
+          // debugger
        el.draggable({
-        stack: '#yellowpink',
-        drag: function( event, ui ) {
-          tapeId = this.id
-          console.log("dragged")
-        }
+          appendTo: 'body',
+          containment: 'window',
+          scroll: false,
+          helper: 'clone'
+          // console.log("dragged")
       });
     }
 
@@ -95,7 +109,8 @@ getUser()
     $('#edit-tape').droppable({
         drop: function(event, ui) {
             console.log('dropped');
-            $tape = $('#' + tapeId)
+            id = ui.draggable.attr('id')
+            $tape = $('#' + id)
             var tapeSource = $tape.attr('src')
             $tape.removeAttr('style').css({padding: '20px'}).appendTo('#edit-tape')
 
@@ -104,7 +119,7 @@ getUser()
             $('#tape-options').css({visibility: 'hidden'});
              href = "/tapes/" + currentTapeId + "/edit"
             $editAnchor = $('<a>').attr('href', href).appendTo('#edit-tape');
-            $('<button>').attr('id','save').html('Save and Start Mixing').css({marginLeft: '80px'}).appendTo($editAnchor);
+            $('<button>').attr('id','save').html('Save and Start Mixing').css({marginLeft: '100px'}).appendTo($editAnchor);
     //Save Tape to Database
         $('#save').on('click', function(){
           console.log('clicked');

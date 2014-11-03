@@ -15,11 +15,13 @@
  */
 body{
   font-family: 'Permanent Marker', cursive;
-  background-color: rgb(210, 203, 203);;
+  background-color: #c882f5;
+
 }
 
 h3{
   font-size: 24px;
+  color: black;
 }
 
 header {
@@ -30,7 +32,7 @@ header {
 .nav {
   height: 70px;
   width: inherit;
-  background-color: white;
+  background-color: whitesmoke;
   text-align: right;
   margin: -10px;
 }
@@ -53,22 +55,76 @@ a{
 
 
 .front-matter {
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 45px;
-  max-width: 400px;
-  padding: 15px;
-  background-color: white;
-  -moz-border-radius: 20px;
-  -webkit-border-radius: 20px;
-  border-radius: 20px;
-  /*IE 7 AND 8 DO NOT SUPPORT BORDER RADIUS*/
-  -moz-box-shadow: 0px 0px 5px #000000;
-  -webkit-box-shadow: 0px 0px 5px #000000;
-  box-shadow: 0px 0px 5px #000000;
-  /*IE 7 AND 8 DO NOT SUPPORT BLUR PROPERTY OF SHADOWS*/
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.2),
+                0 1px 1px rgba(0, 0, 0, .2),
+                0 3px 0 #fff,
+                0 4px 0 rgba(0, 0, 0, .2),
+                0 6px 0 #fff,
+                0 7px 0 rgba(0, 0, 0, .2);
+   position: absolute;
+   z-index: 0;
+   background-color: whitesmoke;
+   text-align: center;
+   width: 400px;
+   margin-left: 500px;
+   margin-top: 100px;
 }
+
+
+.front-matter:before {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    border: 1px dashed #ccc;
+    top: 5px;
+    bottom: 5px;
+    left: 5px;
+    right: 5px;
+    box-shadow: 0 0 0 1px #fff;
+
+}
+
+
+h1 {
+    text-shadow: 0 1px 0 rgba(255, 255, 255, .7), 0px 2px 0 rgba(0, 0, 0, .5);
+    text-transform: uppercase;
+    text-align: center;
+    color: #666;
+    margin: 0 0 30px 0;
+    letter-spacing: 4px;
+    font: normal 26px/1 Verdana, Helvetica;
+    position: relative;
+}
+
+
+
+h1:after {
+    right: 0;
+}
+
+h1:before {
+    background-image: linear-gradient(right, #777, #fff);
+    left: 0;
+}
+
+
 
 .login_submit {
   margin-top: 1em;
+}
+
+.login-container {
+  width: 1500px;
+  margin-left: -10px;
+  margin-top: 10px;
+  height: 900px;
+  border: 1px solid black;
+  background-image: url("splash.png");
+  background-size: cover;
+}
+
+input{
+  font-size: 20px;
+  margin: 10px;
+  font-family: 'Permanent Marker', cursive;
 }

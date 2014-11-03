@@ -1,39 +1,38 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>MixtapeApp</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-  <link href='https://fonts.googleapis.com/css?family=Permanent+Marker' rel='stylesheet' type='text/css'>
-  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css" />
-  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
-  <script src="https://connect.soundcloud.com/sdk.js"></script>
+  <head>
+    <title>MixtapeApp</title>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+    <link href='https://fonts.googleapis.com/css?family=Permanent+Marker' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+    <script src="https://connect.soundcloud.com/sdk.js"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 
-</head>
-<body>
-    <nav>
-    <ul class="nav">
+  </head>
+    <body>
+      <nav>
+        <ul class="nav">
 
-       <% if session[:user_id] %>
-      <%= link_to 'MIXTAPE', user_path(session[:user_id]), class: 'logo' %>
-      <% else %>
-       <%= link_to 'MIXTAPE', root_path, class: 'logo' %>
-     <% end %>
-
-        <% if session[:user_id] %>
-          <%= link_to 'Logout', session_path, method: :delete %>
+          <% if session[:user_id] %>
+            <%= link_to image_tag('Logo.png', id:'logo'), user_path(session[:user_id]) %>
           <% else %>
-        <li class="login"><%= link_to 'Log In', login_path %></li>
-          <li class="signup"><%= link_to 'Sign Up', new_user_path %></li>
-        <% end %>
-        <%= image_tag('Logo.png', id:'logo') %>
+            <%= link_to image_tag('Logo.png', id:'logo'), root_path %>
+          <% end %>
 
-      </ul>
-    </nav>
+          <% if session[:user_id] %>
+            <%= link_to  '<i class="fa fa-user"></i> Logout'.html_safe , session_path, method: :delete, class:'login' %>
+          <% else %>
+            <%= link_to '<i class="fa fa-user"></i> Log In'.html_safe, login_path, class:'login' %></li><br/>
+          <% end %>
+
+        </ul>
+      </nav>
 
 
 <%= yield %>
 
-</body>
+    </body>
 </html>

@@ -250,3 +250,15 @@ ul {
 #tracks p {margin: 0 0 20px;}
 #tracks p:last-child {margin: 0;}
 #tracks ul {margin: 0 0 20px;}
+
+
+#editing-tape {
+    text-shadow: 0 1px 0 rgba(255, 255, 255, .7), 0px 2px 0 rgba(0, 0, 0, .5);
+    text-transform: uppercase;
+    text-align: left;
+    color: #666;
+    margin-top: 10px;
+    letter-spacing: 4px;
+    font: normal 26px/1 Verdana, Helvetica;
+    position: relative;
+}

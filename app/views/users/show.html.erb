@@ -3,29 +3,32 @@
 
 
 <div class="tape-list">
-      <h3>Tapes</h3>
+      <h3>Your Tapes</h3>
       <ul id="tapes">
         <% @tapes.each do |tape| %>
-          <li><%= link_to(tape.name, edit_tape_path(tape.id)) %></li>
+          <li class="tapes"><img src="<%= tape.img_url %>"width="30px"/>
+            <%= link_to(tape.name, edit_tape_path(tape.id), class: 'tape-link') %>
+
+          </li>
         <% end %>
       </ul>
     </div>
 
 
   <div id='overlay_btn'>
-  <a href='#' onclick='overlay()'>Make a New Tape</a>
-</div>
+   <a id='overlay-link' href='#' onclick='overlay()'>Make a New Tape</a>
+  </div>
 
   <div id='overlay'>
-     <div>
-          <h1>Give Your Tape a Name</h1>
-          <input id='customize' type='text' placeholder='name'>
-          <h1>Email of Receiver</h1>
-          <input id='receiver' type='text' placeholder='email'>
-          <h1>Include a Message</h1>
-          <input id='message' type='text' placeholder='message'>
-          <button id='custom-submit'>Customize</button>
-          <a id='close' href='#' onclick='overlay()'>CLOSE</a>
+     <div id="create">
+          <h4>Give Your Tape a Name</h4>
+            <input id='customize' type='text' placeholder='name'>
+          <h4>Email of Receiver</h4>
+            <input id='receiver' type='text' placeholder='email'>
+          <h4>Include a Message</h4>
+            <input id='message' type='text' placeholder='message'><br/>
+            <button id='custom-submit'>Customize</button>
+               <a id='close' href='#' onclick='overlay()'>CLOSE</a>
      </div>
 </div>
   <div id='tape-options'>
@@ -41,7 +44,7 @@
     <%= image_tag('tape_10.png', id:'blue') %>
   </div>
 <div id="boombox">
-       <%= image_tag('boombox.png', id:"boombox") %>
+       <%= image_tag('booombox_02.png', id:"boombox") %>
     <div id="edit-tape">
     </div>
 </div>
