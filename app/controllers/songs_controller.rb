@@ -11,7 +11,7 @@ class SongsController < ApplicationController
   # GET /songs/1
   # GET /songs/1.json
   def show
-    @songs = Song.where(tape_id: params[:tape_id])
+    @songs = Song.where(tape_id: params[:tape_id]).order(id: :asc)
     render :json => @songs
   end
 
