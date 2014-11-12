@@ -11,18 +11,16 @@
   <% end %>
 
   <div class="actions">
+    <h1 id='new-user'>New user</h1>
     <p>
-      <%= f.label(:email) %>
-      <%= f.text_field(:email) %><br/>
+      <%= f.text_field :email, placeholder: 'email' %><br/>
     </p>
 
     <p>
-      <%= f.label(:name) %>
-      <%= f.text_field(:name) %><br/>
+      <%= f.text_field :name, placeholder: 'name' %><br/>
     </p>
 
-      <%= f.label(:password) %><br/>
-      <%= f.password_field(:password) %><br/>
+      <%= f.password_field :password, placeholder: 'password' %><br/>
     </p>
 
     <p><%= f.submit %></p>

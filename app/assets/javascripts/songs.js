@@ -43,9 +43,9 @@ function Playlist(playlist){
   this.playlist = playlist
 }
 
-Playlist.prototype.duration = function(){
-  return // whatever all the songs durations are.
-}
+// Playlist.prototype.duration = function(){
+//   return // whatever all the songs durations are.
+// }
 
 total_duration = 0;
 
@@ -53,13 +53,13 @@ function doSetTimeout(index, duration){
   setTimeout(function(){index.play()}, duration)
 }
 
-Playlist.prototype.playAll = function(){
-  for (var i = 0; i < playlist.length; i++){
-    console.log(total_duration)
-     doSetTimeout(playlist[i], total_duration)
-     total_duration += playlist[i].duration;
-     }
-}
+// Playlist.prototype.playAll = function(){
+//   for (var i = 0; i < playlist.length; i++){
+//     console.log(i, total_duration)
+//     doSetTimeout(playlist[i], total_duration)
+//     total_duration += playlist[i].duration;
+//   }
+// }
 
 
 //Get All Songs
@@ -72,7 +72,7 @@ $(document).ready(function(){
   playlist = []
 
   function loadSongs(){
-    $('#track_list').empty()
+    $('#page_list').empty()
     var id = $('img').eq(1).attr('id')
     $.ajax({
       url: "/tapes/" + id + "/songs",
@@ -84,11 +84,12 @@ $(document).ready(function(){
         // playlist.push(newSong);
         newSongView = new SongView(newSong);
         $('<li>').html('<span>X</span>' + newSongView.model.name).attr('id',newSongView.model.id).on('click', function(){
+          this.remove()
            $.ajax({
                type: "DELETE",
                url: "/songs/" + this.id,
+            }).done (function(data){
             });
-            this.remove()
 
                 console.log('put delete function here');
               }).appendTo($('#track_list'));
@@ -100,25 +101,26 @@ $(document).ready(function(){
 
 
 
-
-
  $('.button').on('click', function(){
   // this is all playlist.playAll
-  console.log('clicked');
+      console.log('clicked');
+        var id = $('img').eq(1).attr('id')
+        $.ajax({
+          url: "/tapes/" + id + "/songs",
+          format: "json"
+        }).done(function(data){
+          console.log(data);
+          for(var i = 0; i < data.length; i++){
+            var newSong = new Song(data[i]);
+            playlist.push(newSong);
 
-        console.log('clicked');
-          var id = $('img').eq(1).attr('id')
-          $.ajax({
-            url: "/tapes/" + id + "/songs",
-            format: "json"
-          }).done(function(data){
-            console.log(data);
-            for(var i = 0; i < data.length; i++){
-              var newSong = new Song(data[i]);
-              playlist.push(newSong);
-
-            p = new Playlist(playlist)
-            p.playAll();
+          // p = new Playlist(playlist).playAll();
+          // p.playAll();
+      }
+        for (var i = 0; i < playlist.length; i++){
+          console.log(i, total_duration)
+          doSetTimeout(playlist[i], total_duration)
+          total_duration += playlist[i].duration;
         }
     });
   });
@@ -143,7 +145,7 @@ function searchForSongsOnSoundCloud() {
   console.log('clicked');
   $searchInput = $('#searchsoundcloud').val();
   // fetches the songs
-  SC.get('/tracks', { q: $searchInput, limit: '10' }, function(tracks){
+  SC.get('/tracks', { q: $searchInput, limit: '20' }, function(tracks){
     console.log(tracks)
     // fetchSoundCloudWidget
     tracks.forEach(function(track){
@@ -151,7 +153,7 @@ function searchForSongsOnSoundCloud() {
         // embed widget in HTML
         function(embed) {
           console.log(track)
-          $('<li class=\'search_results\'>' + embed['html'] + '<button class=\"add\">+</button></li>').on('click',
+          $('<li class=\'search_results\'>' + embed['html'] + '<button class=\"add\">Add</button></li>').on('click',
           // addToPlaylist
           function(){
             console.log('clicked')
@@ -178,11 +180,11 @@ function searchForSongsOnSoundCloud() {
                     // playlist.push(newSong);
                     newSongView = new SongView(newSong);
                     $('<li>').html('<span>X</span>' + newSongView.model.name).attr('id',newSongView.model.id).on('click', function(){
+                      this.remove()
                        $.ajax({
                            type: "DELETE",
                            url: "/songs/" + this.id,
                         }).done (function(data){
-                        this.remove()
                           });
                           }).appendTo($('#track_list'));
 

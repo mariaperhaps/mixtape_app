@@ -3,8 +3,8 @@
     <h1>Login</h1>
     <div>
       <%= form_tag(session_path) do %>
-        <%= text_field_tag :email, placeholder = 'Email' %><br/>
-        <%= password_field_tag :password, placeholder = 'Password' %><br/>
+        <%= text_field_tag :email, value = nil, placeholder: 'Email' %><br/>
+        <%= password_field_tag :password, value = nil, placeholder:'Password' %><br/>
         <%= submit_tag('Login') %>
       <% end %>
       <p style="color: red"><%= flash[:error] %></p>

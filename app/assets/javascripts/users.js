@@ -17,11 +17,6 @@ $(document).ready(function() {
 
 // $('.tapes').css('background-color', RandomColor);
 
-
-
-
-
-
 function getUser(){
     $.ajax({
       type: 'GET',
@@ -66,7 +61,6 @@ getUser()
   el = document.getElementById("overlay");
     el.style.visibility = (el.style.visibility == "visible") ? "hidden" : "visible";
     $('#overlay_btn').remove()
-
     $('#tape-options').css({visibility: 'visible'})
   });
 
@@ -113,9 +107,7 @@ getUser()
             $tape = $('#' + id)
             var tapeSource = $tape.attr('src')
             $tape.removeAttr('style').css({padding: '20px'}).appendTo('#edit-tape')
-
             $tape.draggable('destroy');
-
             $('#tape-options').css({visibility: 'hidden'});
              href = "/tapes/" + currentTapeId + "/edit"
             $editAnchor = $('<a>').attr('href', href).appendTo('#edit-tape');

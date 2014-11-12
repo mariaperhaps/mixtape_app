@@ -9,6 +9,7 @@ class TapesController < ApplicationController
   def show
     @tape = Tape.find(params[:id])
     @songs = Song.where(tape_id: params[:id])
+    @message = @tape.message
   end
 
   def new
@@ -31,8 +32,8 @@ class TapesController < ApplicationController
   def update
     @tape
     @tape.update(img_url: params[:img_url])
-    # redirect_to(edit_tape_path(@tape.id))
-    render json: @tape
+    redirect_to(edit_tape_path(@tape.id))
+    # render json: @tape
   end
 
   # DELETE /tapes/1
