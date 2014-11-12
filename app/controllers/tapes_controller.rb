@@ -32,8 +32,7 @@ class TapesController < ApplicationController
   def update
     @tape
     @tape.update(img_url: params[:img_url])
-    redirect_to(edit_tape_path(@tape.id))
-    # render json: @tape
+    render json: @tape
   end
 
   # DELETE /tapes/1
