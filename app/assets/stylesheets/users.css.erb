@@ -39,18 +39,15 @@ a{
 
 
 .front-matter {
-  box-shadow: 0 0 2px rgba(0, 0, 0, 0.2),
-                0 1px 1px rgba(0, 0, 0, .2),
-                0 3px 0 #fff,
-                0 4px 0 rgba(0, 0, 0, .2),
-                0 6px 0 #fff,
-                0 7px 0 rgba(0, 0, 0, .2);
+   -webkit-box-shadow: 4px 6px 5px 0px rgba(0,0,0,0.75);
+   -moz-box-shadow: 4px 6px 5px 0px rgba(0,0,0,0.75);
+   box-shadow: 4px 6px 5px 0px rgba(0,0,0,0.75);
    position: absolute;
    z-index: 0;
    background-color: whitesmoke;
    text-align: center;
    width: 400px;
-   margin-left: 500px;
+   margin-left: 33.33%;
    margin-top: 100px;
 }
 
@@ -64,7 +61,7 @@ a{
     bottom: 5px;
     left: 5px;
     right: 5px;
-    box-shadow: 0 0 0 1px #fff;
+
 
 }
 
@@ -96,8 +93,8 @@ h1:before {
 }
 
 .login-container {
-  width: 1500px;
-  margin-left: -10px;
+  width: 100%;
+/*  margin-left: -10px;*/
   margin-top: 10px;
   height: 900px;
   border: 1px solid black;
@@ -267,7 +264,7 @@ li {
   padding:6px 24px;
   text-decoration:none;
   text-shadow:0px 1px 0px #ffffff;
-  margin-top: 20px;
+  margin: 20px;
 }
 .login:hover {
   background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #ffffff), color-stop(1, #ededed));
