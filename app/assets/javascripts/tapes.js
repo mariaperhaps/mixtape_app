@@ -36,6 +36,7 @@ Tape.prototype.update = function(img_url){
     type: "PUT"
   }).done(function(response){
     console.log("response");
+    window.location = "/tapes/" + currentTapeId + "/edit";
   });
 };
 

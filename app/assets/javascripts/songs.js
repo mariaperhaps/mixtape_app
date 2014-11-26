@@ -19,7 +19,7 @@ Song.prototype.play = function(){
     client_id: "d95ac796afeb1568792d9ff7a945e19d",
    });
     track = SC.stream("/tracks/" + this.soundcloud_id, function(sound){
-      sound.play();
+        sound.play();
   });
 }
 
@@ -47,11 +47,6 @@ function Playlist(playlist){
 //   return // whatever all the songs durations are.
 // }
 
-total_duration = 0;
-
-function doSetTimeout(index, duration){
-  setTimeout(function(){index.play()}, duration)
-}
 
 // Playlist.prototype.playAll = function(){
 //   for (var i = 0; i < playlist.length; i++){
@@ -69,7 +64,7 @@ function doSetTimeout(index, duration){
 
 
 $(document).ready(function(){
-  playlist = []
+  // playlist = []
 
   function loadSongs(){
     $('#page_list').empty()
@@ -101,28 +96,36 @@ $(document).ready(function(){
 
 
 
+  total_duration = 0;
+
+  function doSetTimeout(index, duration){
+      setTimeout(function(){index.play()}, duration)
+  }
+
  $('.button').on('click', function(){
   // this is all playlist.playAll
-      console.log('clicked');
-        var id = $('img').eq(1).attr('id')
-        $.ajax({
-          url: "/tapes/" + id + "/songs",
-          format: "json"
-        }).done(function(data){
-          console.log(data);
-          for(var i = 0; i < data.length; i++){
-            var newSong = new Song(data[i]);
-            playlist.push(newSong);
+       playlist = []
+        console.log('clicked');
+          var id = $('img').eq(1).attr('id')
+          $.ajax({
+            url: "/tapes/" + id + "/songs",
+            format: "json"
+          }).done(function(data){
+            console.log(data);
+            for(var i = 0; i < data.length; i++){
+              var newSong = new Song(data[i]);
+              playlist.push(newSong);
 
-          // p = new Playlist(playlist).playAll();
-          // p.playAll();
-      }
-        for (var i = 0; i < playlist.length; i++){
-          console.log(i, total_duration)
-          doSetTimeout(playlist[i], total_duration)
-          total_duration += playlist[i].duration;
+            // p = new Playlist(playlist).playAll();
+            // p.playAll();
         }
-    });
+          for (var i = 0; i < playlist.length; i++){
+            console.log(i, total_duration)
+            currentSong = playlist[i];
+            doSetTimeout(playlist[i], total_duration)
+            total_duration += playlist[i].duration;
+          }
+       });
   });
 
 

@@ -106,12 +106,13 @@ getUser()
             id = ui.draggable.attr('id')
             $tape = $('#' + id)
             var tapeSource = $tape.attr('src')
+
             $tape.removeAttr('style').css({padding: '20px'}).appendTo('#edit-tape')
             $tape.draggable('destroy');
             $('#tape-options').css({visibility: 'hidden'});
              href = "/tapes/" + currentTapeId + "/edit"
-            $editAnchor = $('<a>').attr('href', href).appendTo('#edit-tape');
-            $('<button>').attr('id','save').html('Save and Start Mixing').css({marginLeft: '100px'}).appendTo($editAnchor);
+            // $editAnchor = $('<a>').attr('href', href).appendTo('#edit-tape');
+            $('<button>').attr('id','save').html('Save and Start Mixing').css({marginLeft: '100px'}).appendTo('#edit-tape');
     //Save Tape to Database
         $('#save').on('click', function(){
           console.log('clicked');
