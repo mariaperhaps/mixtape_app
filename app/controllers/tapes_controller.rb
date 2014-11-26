@@ -8,7 +8,7 @@ class TapesController < ApplicationController
 
   def show
     @tape = Tape.find(params[:id])
-    @songs = Song.where(tape_id: params[:id])
+    @songs = Song.where(tape_id: params[:id]).order(id: :asc)
     @message = @tape.message
   end
 
