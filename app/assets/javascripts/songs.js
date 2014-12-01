@@ -43,25 +43,8 @@ function Playlist(playlist){
   this.playlist = playlist
 }
 
-// Playlist.prototype.duration = function(){
-//   return // whatever all the songs durations are.
-// }
-
-
-// Playlist.prototype.playAll = function(){
-//   for (var i = 0; i < playlist.length; i++){
-//     console.log(i, total_duration)
-//     doSetTimeout(playlist[i], total_duration)
-//     total_duration += playlist[i].duration;
-//   }
-// }
-
 
 //Get All Songs
-
-// window.onload = loadSongs();
-
-
 
 $(document).ready(function(){
   // playlist = []
@@ -85,9 +68,8 @@ $(document).ready(function(){
                url: "/songs/" + this.id,
             }).done (function(data){
             });
-
-                console.log('put delete function here');
-              }).appendTo($('#track_list'));
+              console.log('put delete function here');
+            }).appendTo($('#track_list'));
       }
     });
   };

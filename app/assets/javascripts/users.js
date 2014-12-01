@@ -8,15 +8,6 @@ function overlay() {
 }
 $(document).ready(function() {
 
-// Tape li Colors
-
-// RandomColor = function() {
-//     colors = ['#7dc5fb', '#4c61ff', '#757efb', '#7556fd', '#ff567c', '#ff8c00', '#45d6bd', '#00ffaa', '#1aff87']
-//     return colors[Math.floor(Math.random()*colors.length)];
-// }
-
-// $('.tapes').css('background-color', RandomColor);
-
 function getUser(){
     $.ajax({
       type: 'GET',
@@ -29,23 +20,6 @@ function getUser(){
   };
 
 getUser()
-
-//Get All Tapes
-  // window.onload = function(){
-  //   $.ajax({
-  //     url: "/tapes",
-  //     format: "json"
-  //   }).done(function(data){
-  //     // console.log(data);
-  //     for(var i = 0; i < data.length; i++){
-  //       var newTape = new Tape(data[i]);
-  //       newTapeView = new TapeView(newTape);
-  //       TapeLink = $('<a>').attr('href', '/tapes/' + newTapeView.model.id).appendTo($('#tapes'))
-  //       $('<li>').text(newTapeView.model.name).appendTo(TapeLink)
-  //     }
-  //   });
-  // };
-
 
 //Create A Tape
   $('#custom-submit').on('click', function(){
@@ -62,6 +36,7 @@ getUser()
     el.style.visibility = (el.style.visibility == "visible") ? "hidden" : "visible";
     $('#overlay_btn').remove()
     $('#tape-options').css({visibility: 'visible'})
+    $('#edit-tape').html('<p id="drop">drop here</p>');
   });
 
 //Tape Dragging
@@ -102,6 +77,7 @@ getUser()
 
     $('#edit-tape').droppable({
         drop: function(event, ui) {
+            $('#drop').remove();
             console.log('dropped');
             id = ui.draggable.attr('id')
             $tape = $('#' + id)
@@ -112,7 +88,7 @@ getUser()
             $('#tape-options').css({visibility: 'hidden'});
              href = "/tapes/" + currentTapeId + "/edit"
             // $editAnchor = $('<a>').attr('href', href).appendTo('#edit-tape');
-            $('<button>').attr('id','save').html('Save and Start Mixing').css({marginLeft: '100px'}).appendTo('#edit-tape');
+            $('<button>').attr('id','save').html('Save and Start Mixing').css({marginLeft: '17%'}).appendTo('#edit-tape');
     //Save Tape to Database
         $('#save').on('click', function(){
           console.log('clicked');
