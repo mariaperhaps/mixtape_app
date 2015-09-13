@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
   resources :invitations
 
+
   root 'welcome#index'
 
   get "/login" => "sessions#new"

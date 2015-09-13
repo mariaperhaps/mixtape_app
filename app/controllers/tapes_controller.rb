@@ -35,8 +35,7 @@ class TapesController < ApplicationController
     render json: @tape
   end
 
-  # DELETE /tapes/1
-  # DELETE /tapes/1.json
+
   def destroy
     @tape.destroy
     respond_to do |format|
@@ -46,12 +45,10 @@ class TapesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_tape
       @tape = Tape.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def tape_params
       params.permit(:name, :message, :receiver, :user_id, :img_url, :id)
     end
