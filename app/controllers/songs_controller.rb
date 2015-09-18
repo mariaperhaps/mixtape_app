@@ -8,8 +8,12 @@ class SongsController < ApplicationController
 
 
   def show
-    @songs = Song.where(tape_id: params[:tape_id]).order(id: :asc)
-    render :json => @songs
+    if params[:id]
+      songs = Song.find(params[:id])
+    else
+      songs = Song.where(tape_id: params[:tape_id]).order(id: :asc)
+    end
+    render :json => songs
   end
 
   def edit

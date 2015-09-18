@@ -1,32 +1,56 @@
 <h1 id="editing-tape">Edit Your Tape</h1>
 
-<div id="user_container">
+<div class="container">
+<!--     <div id="user_container">
+ -->
+  <div class="row">
+      <div id="tape_container" class='col-md-4'>
 
-  <div id="tape_container">
-    <!-- <button id="search">Search For Songs</button><br/> -->
-    <ul>
-      <li><img id="<%= @tape.id %>" src="<%= @tape.img_url %>"width="350px"/></li><br/>
+          <div class="col-md-4">
+            <img class="tape-image" id="<%= @tape.id %>" src="<%= @tape.img_url %>"width="350px"/><br/>
+          </div>
 
-      <!-- <i class="fa fa-play fa-5x"></i> -->
-      <div id="play" class="button button-circle button-action">PLAY</div><br/>
-      <div id="pause" class="button button-circle button-action">PAUSE</div><br/>
 
-     <button id='send'>Send</button>
 
-    </ul>
-  </div>
-  <div id="track_list">
-      <h2><%= @tape.name %></h2>
-    <ul id="page_list">
-    </ul>
-  </div>
+            <div id="transport" class="col-md-8 center-controls">
 
-    <div id="slide">
-      <input type='text' placeholder='search' id='searchsoundcloud' >
-      <button id="Submit">Search For Songs</button>
-      <ul id="SC_embeds">
-      </ul>
+              <div class="col-md-2 skip center-controls">
+                <div id="skip-back"><i class="fa fa-fast-backward"></i></div><br/>
+              </div>
+
+              <div class="col-md-4 center-controls">
+                <div id="play" class=""><i class="fa fa-play fa-3x"></i></div><br/>
+              </div>
+
+              <div class="col-md-2 skip center-controls">
+                <div id="skip-ahead"><i class="fa fa-fast-forward"></i></div><br/>
+              </div>
+
+            </div>
+
+
+       <button id='send'>Send</button>
+
     </div>
 
+    <div class="col-md-4">
+      <div id="track_list">
+        <h2><%= @tape.name %></h2>
+        <ul id="songs-list"></ul>
+      </div>
+    </div>
 
+      <div id="search-songs" class="col-md-4">
+        <input type='text' placeholder='search' id='searchsoundcloud' >
+        <button id="Submit">Search For Songs</button>
+        <ul id="SC_embeds">
+        </ul>
+      </div>
+
+  </div>
 </div>
+
+<script type="text/template" id="song-template">
+  <span class="delete-song">X</span>
+  {{ song.name }}
+</script>
