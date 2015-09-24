@@ -17,7 +17,7 @@ body{
   text-align: center;
 }
 
-#play{
+#play, #pause{
   margin-left: 1em
 }
 
@@ -46,9 +46,6 @@ body{
   margin: 10px;
 }
 
-#searchsoundcloud {
-  margin: 1em;
-}
 
 #logo{
   width: 100px;
@@ -195,6 +192,7 @@ ul {
   font-size: 14px;
   width: 200px;
   margin: 0;
+  display: inline;
 }
 
 .transport{
@@ -203,4 +201,9 @@ ul {
 
 .skip{
   margin-top: .7em;
+}
+
+.add{
+  float: right;
+  color: fuchsia;
 }

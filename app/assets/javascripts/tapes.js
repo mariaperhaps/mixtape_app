@@ -19,13 +19,14 @@ $(document).ready(function(){
       this.listenTo(this.collection, 'reset', this.playAll)
     },
     events: {
-      'click .fa-play': 'playAll',
-      'click .fa-pause': 'pauseCurrent',
+      'click #play': 'playAll',
+      'click #pause': 'pauseCurrent',
       'click #skip-back': 'previousSong',
       'click #skip-ahead': 'nextSong'
     },
     playAll: function(){
-        $('.fa-play').removeClass('fa-play').addClass('fa-pause');
+      $('#play i:first-child').removeClass('fa-play').addClass('fa-pause');
+      $('#play').attr('id', 'pause')
       if (this.collection.models[this.collection.currentIndex].isPlaying == false){
         this.collection.models[this.collection.currentIndex].play()
       } else {
@@ -34,7 +35,8 @@ $(document).ready(function(){
     },
     pauseCurrent: function(){
       this.collection.currentSong.pause()
-      $('.fa-pause').removeClass('fa-pause').addClass('fa-play');
+      $('#pause i:first-child').removeClass('fa-pause').addClass('fa-play');
+      $('#pause').attr('id', 'play');
     },
     previousSong: function(){
       this.collection.currentSong.stop()
@@ -57,11 +59,13 @@ $(document).ready(function(){
 
   var TapeView = Backbone.View.extend({
     initialize: function(){
+
       this.showSongs();
     },
     showSongs: function(){
       this.model.songs.fetch({success: function(songs){
         new SongsView({collection: songs})
+        new SearchForm({collection: songs})
         new PlaylistView({collection: songs})
       }});
     }
@@ -80,6 +84,7 @@ $(document).ready(function(){
     },
     delete: function(){
       // TODO
+      this.model.destroy();
       console.log('inside delete')
     }
   });
@@ -88,16 +93,98 @@ $(document).ready(function(){
   var SongsView = Backbone.View.extend({
     el: '#songs-list',
     initialize: function(){
-      this.listenTo(this.collection, 'sync', this.render)
+      this.listenTo(this.collection, 'sync remove', this.render)
       console.log("songs happened")
     },
     render: function(song){
+      this.$el.empty();
       this.collection.forEach(function(song){
         this.$el.append(new SongView({model: song}).render().el)
       }.bind(this))
     }
 
   });
+
+  var SearchResultView = Backbone.View.extend({
+    tagName: 'li',
+    template: _.template($('#search-result-template').html()),
+    currentSong: "",
+    events: {
+      'click #sc-play': 'play',
+      'click #pause-sc': 'pause',
+      'click .add': 'save'
+    },
+    render: function(){
+      this.$el.html(this.template({song: this.model}))
+      return this
+    },
+    play: function(e){
+      $(e.target).removeClass('fa-play').addClass('fa-pause').attr('id', 'pause-sc')
+       SC.initialize({
+         client_id: "d95ac796afeb1568792d9ff7a945e19d",
+       });
+       SC.stream("/tracks/" + this.model.id, function(sound){
+          sound.play()
+          this.currentSong = sound
+       }.bind(this));
+    },
+    pause: function(e){
+      this.currentSong.pause();
+      $(e.target).removeClass ('fa-pause').addClass('fa-play').attr('id', 'sc-play')
+    },
+    save: function(){
+      tape_id = $('.tape-image').attr('id')
+      $.ajax({
+         type: 'POST',
+           url: '/songs',
+           dataType: 'json',
+           data: {
+             soundcloud_id: this.model.id,
+             tape_id: tape_id,
+             name: this.model.title,
+             duration: this.model.duration}
+           }).done (function(data){
+               var tape = new Tape({id: tape_id})
+
+               tape.fetch({success: function(tape){
+                  new TapeView({model: tape})
+               }})
+           });
+    }
+  });
+
+    var SearchResultsView = Backbone.View.extend({
+    el: '#SC_embeds',
+    initialize: function(){
+      this.render()
+      this.listenTo(this.collection, 'add', this.render)
+    },
+    render: function(){
+      this.$el.empty()
+      this.collection.forEach(function(song){
+        this.$el.append(new SearchResultView({model: song}).render().$el);
+      }.bind(this))
+    }
+  });
+
+    var SearchForm = Backbone.View.extend({
+    el: '#search-songs',
+    events: {
+      'click #song-search-button': 'search'
+    },
+    search: function(){
+      var query = $('#searchsoundcloud').val()
+
+      SC.initialize({
+        client_id: "d95ac796afeb1568792d9ff7a945e19d",
+      });
+      SC.get('/tracks', { q: query, limit: '20' }, function(tracks){
+          var search = new SearchResultsView({collection: tracks})
+      }.bind(this));
+
+      $('#searchsoundcloud').val("")
+    }
+  })
 
 
   var tape = new Tape({id: currentTapeId})

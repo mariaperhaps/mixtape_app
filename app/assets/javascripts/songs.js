@@ -18,38 +18,118 @@ var Song = Backbone.Model.extend({
   }
 })
 
-var SongsCollection = Backbone.Collection.extend({
-  model: Song,
-  currentIndex: 0,
-  currentSong: "",
-  reset: function(){
-    this.currentIndex = 0;
-    this.models[this.currentIndex].isPlaying = false
-    $('.fa-pause').removeClass("fa-pause").addClass('fa-play');
-  },
-  isItOver: function(){
-    if(this.currentIndex >= this.length || this.currentIndex < 0){
-      return true
-    } else {
-      return false
+
+
+
+
+// $(document).ready(function(){
+
+//   var SearchResultView = Backbone.View.extend({
+//     tagName: 'li',
+//     template: _.template($('#search-result-template').html()),
+//     currentSong: "",
+//     events: {
+//       'click #sc-play': 'play',
+//       'click #pause-sc': 'pause',
+//       'click .add': 'save'
+//     },
+//     render: function(){
+//       this.$el.html(this.template({song: this.model}))
+//       return this
+//     },
+//     play: function(e){
+//       $(e.target).removeClass('fa-play').addClass('fa-pause').attr('id', 'pause-sc')
+//        SC.initialize({
+//           client_id: "d95ac796afeb1568792d9ff7a945e19d",
+//          });
+//            SC.stream("/tracks/" + this.model.id, function(sound){
+//               sound.play()
+//               this.currentSong = sound
+//         }.bind(this));
+//     },
+//     pause: function(e){
+//       this.currentSong.pause();
+//       $(e.target).removeClass ('fa-pause').addClass('fa-play').attr('id', 'sc-play')
+//     },
+//     save: function(){
+//       tape_id = $('.tape-image').attr('id')
+//       $.ajax({
+//          type: 'POST',
+//            url: '/songs',
+//            dataType: 'json',
+//            data: {
+//              soundcloud_id: this.model.id,
+//              tape_id: tape_id,
+//              name: this.model.title,
+//              duration: this.model.duration}
+//            }).done (function(data){
+//                // var tape = new Tape({id: tape_id})
+
+//                // tape.fetch({success: function(tape){
+//                //    new TapeView({model: tape})
+//                // }})
+//            });
+//     }
+//   });
+
+//   var SearchResultsView = Backbone.View.extend({
+//     el: '#SC_embeds',
+//     initialize: function(){
+//       this.listenTo(this.collection, 'add', this.render)
+//     },
+//     render: function(){
+//       this.collection.forEach(function(song){
+//         this.$el.append(new SearchResultView({model: song}).render().$el);
+//       }.bind(this))
+//     }
+//   });
+
+
+
+
+
+
+
+  // var SoundCloudSongs = Backbone.Collection.extend({
+  //   model: Song,
+  //   url: '/songs',
+  //   initialize: function(options){
+  //     this.getSongs(options);
+  //   },
+  //   getSongs: function(searchTerm){
+  //     SC.initialize({
+  //       client_id: "d95ac796afeb1568792d9ff7a945e19d",
+  //     });
+  //     SC.get('/tracks', { q: searchTerm, limit: '20' }, function(tracks){
+  //       new SearchResultsView({collection: this})
+  //       this.models = tracks;
+  //       this.trigger('add')
+  //     }.bind(this));
+  //   }
+  // });
+
+
+
+// });
+
+  var SongsCollection = Backbone.Collection.extend({
+    model: Song,
+    currentIndex: 0,
+    currentSong: "",
+    searchedSongs: [],
+    reset: function(){
+      this.currentIndex = 0;
+      this.models[this.currentIndex].isPlaying = false
+      $('#pause').removeClass("fa-pause").addClass('fa-play');
+    },
+    isItOver: function(){
+      if(this.currentIndex >= this.length || this.currentIndex < 0){
+        return true
+      } else {
+        return false
+      }
     }
-  }
-});
-
-// function isItOver(collection){
-//   if(collection.currentIndex >= collection.length){
-//     return true
-//   } else {
-//     return false
-//   }
-// }
-
-// function reset(collection){
-//   collection.currentIndex = 0
-//   collection.models[collection.currentIndex].isPlaying = false
-//   $('.fa-pause').removeClass("fa-pause").addClass('fa-play');
-// }
-
+  });
 // OLD STUFF
 
 

@@ -19,7 +19,7 @@
               </div>
 
               <div class="col-md-4 center-controls">
-                <div id="play" class=""><i class="fa fa-play fa-3x"></i></div><br/>
+                <div id="play"><i class="fa fa-play fa-3x"></i></div><br/>
               </div>
 
               <div class="col-md-2 skip center-controls">
@@ -41,8 +41,8 @@
     </div>
 
       <div id="search-songs" class="col-md-4">
-        <input type='text' placeholder='search' id='searchsoundcloud' >
-        <button id="Submit">Search For Songs</button>
+        <input type='text' class="form-control" placeholder='search' id='searchsoundcloud' >
+        <button id="song-search-button" class="btn">Search For Songs</button>
         <ul id="SC_embeds">
         </ul>
       </div>
@@ -53,4 +53,8 @@
 <script type="text/template" id="song-template">
   <span class="delete-song">X</span>
   {{ song.name }}
+</script>
+
+<script type="text/template" id="search-result-template">
+  <i id="sc-play" class="fa fa-play"></i><span>{{ song.title }}</span><span class="add">Add</span>
 </script>

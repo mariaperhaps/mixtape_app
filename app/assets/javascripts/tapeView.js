@@ -1,9 +1,9 @@
 console.log("tape_view.js linked");
 
-function TapeView(model){
-  this.$el   = $("<li>");
-  this.model = model;
-}
+// function TapeView(model){
+//   this.$el   = $("<li>");
+//   this.model = model;
+// }
 
 // TapeView.prototype = {
 //   template: _.template($("#tape-template").html()),
