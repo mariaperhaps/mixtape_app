@@ -1,0 +1,146 @@
+// Place all the styles related to the test controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+*{
+  font-family: Lato;
+}
+
+.gray{
+  color: #414042;
+}
+
+#splash{
+  background: #c4f4eb;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+#splash:after {
+  top: 100%;
+  left: 50%;
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  border-top-color: #c4f4eb;
+  border-width: 30px;
+  margin-left: -30px;
+}
+
+#mixtape-type{
+  width: 50%;
+}
+
+#tape-hero{
+  width: 25%;
+}
+
+.icon-container{
+   margin-top: 4em;
+}
+
+.icons{
+  color: white;
+  font-size: 3em;
+}
+
+.icons:hover{
+  opacity: .5;
+}
+
+#title{
+  color: white;
+  font-size: 10em;
+}
+
+#about{
+  background: #e2f4eb;
+  height: 650px;
+  padding-left: 60px;
+
+}
+
+#break{
+  border-top: 4px solid #414042;
+  width: 80%;
+  margin-left: 0;
+}
+
+div.col-md-4.hooks{
+  padding: 0;
+}
+
+.top-spaced{
+  top: 8em;
+}
+
+
+#btn-container{
+  top: 5em;
+  padding: 0;
+  float: right;
+}
+
+#get-started{
+  background: #ff335f;
+  color: white;
+}
+
+.try{
+  color: #ff335f;
+}
+
+#tape-pic{
+  background: #c4f4eb;
+  text-align: center;
+}
+
+.pic-container, #splash{
+  padding-top: 10%;
+  padding-bottom: 10%;
+}
+
+#tape-grid{
+  width:  100%;
+}
+
+#contact{
+  text-align: center;
+  background: #e2f4eb;
+  padding-top: 5%;
+  padding-bottom: 5%;
+}
+
+.social{
+ color: #ff335f;
+}
+
+@media (max-width: 600px) {
+  #title {
+    font-size: 5em;
+  }
+  .icons {
+    font-size: 1em;
+    padding: 5px;
+  }
+  .icon-container{
+    margin-top: 1em;
+    margin-bottom: 1em;
+  }
+  #splash{
+    height: 30%;
+  }
+}
+
+@media (max-width: 1000px){
+  #about{
+    height: 750px;
+    margin-top: -20px;
+  }
+  #btn-container{
+    top: 2em;
+    float: none;
+  }
+}
