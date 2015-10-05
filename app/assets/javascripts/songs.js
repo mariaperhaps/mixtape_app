@@ -20,6 +20,12 @@ var Song = Backbone.Model.extend({
 
 
 
+function rotateSpools(){
+  $('.spool').each(function(){
+    $(this).attr('class', 'rotate')
+  })
+}
+
 
 
 // $(document).ready(function(){

@@ -11,7 +11,7 @@ var Tape = Backbone.Model.extend({
 $(document).ready(function(){
 
 // TODO: Is there a better way?
-  var currentTapeId = $('.tape-image').attr('id')
+  var currentTapeId = $('h1').attr('id')
 
   var PlaylistView = Backbone.View.extend({
     el: '#transport',
@@ -25,6 +25,7 @@ $(document).ready(function(){
       'click #skip-ahead': 'nextSong'
     },
     playAll: function(){
+      rotateSpools()
       $('#play i:first-child').removeClass('fa-play').addClass('fa-pause');
       $('#play').attr('id', 'pause')
       if (this.collection.models[this.collection.currentIndex].isPlaying == false){
@@ -37,6 +38,7 @@ $(document).ready(function(){
       this.collection.currentSong.pause()
       $('#pause i:first-child').removeClass('fa-pause').addClass('fa-play');
       $('#pause').attr('id', 'play');
+      stopSpinning();
     },
     previousSong: function(){
       this.collection.currentSong.stop()
@@ -133,7 +135,7 @@ $(document).ready(function(){
       $(e.target).removeClass ('fa-pause').addClass('fa-play').attr('id', 'sc-play')
     },
     save: function(){
-      tape_id = $('.tape-image').attr('id')
+      tape_id = $('h1').attr('id')
       $.ajax({
          type: 'POST',
            url: '/songs',
@@ -191,9 +193,11 @@ $(document).ready(function(){
   tape.fetch()
   new TapeView({model: tape})
 
-
-
-
+function stopSpinning(){
+  $('.rotate').each(function(){
+    $(this).attr('class', 'spool')
+  });
+}
 
 
 });

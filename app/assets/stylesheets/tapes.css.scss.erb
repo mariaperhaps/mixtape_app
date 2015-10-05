@@ -1,6 +1,10 @@
 // Place all the styles related to the Tapes controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+@-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
+@-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
+@keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
+
 body{
   font-family: 'Permanent Marker', cursive;
   background-color: #8E8495;
@@ -23,7 +27,7 @@ body{
 
 
 #transport{
-  margin-left: 7em;
+  margin-left: 25%;
   margin-top: 1em;
 }
 
@@ -181,7 +185,7 @@ ul {
 #tracks ul {margin: 0 0 20px;}
 
 
-#editing-tape {
+.editing-tape {
     text-shadow: 0 1px 0 rgba(255, 255, 255, .7), 0px 2px 0 rgba(0, 0, 0, .5);
     text-transform: uppercase;
     text-align: left;
@@ -210,4 +214,11 @@ ul {
 .add{
   float: right;
   color: fuchsia;
+}
+
+.rotate{
+  -webkit-animation:spin 4s linear infinite;
+  -moz-animation:spin 4s linear infinite;
+  animation:spin 4s linear infinite;
+  transform-origin: 50% 50%;
 }

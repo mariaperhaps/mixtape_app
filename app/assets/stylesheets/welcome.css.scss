@@ -10,10 +10,12 @@
 }
 
 #splash{
-  background: #c4f4eb;
+  background: #86f4eb;
   text-align: center;
   position: relative;
   z-index: 1;
+  padding-top: 5%;
+  padding-bottom: 10%;
 }
 
 #splash:after {
@@ -24,7 +26,7 @@
   height: 0;
   width: 0;
   position: absolute;
-  border-top-color: #c4f4eb;
+  border-top-color: #86f4eb;
   border-width: 30px;
   margin-left: -30px;
 }
@@ -73,7 +75,7 @@ div.col-md-4.hooks{
 }
 
 .top-spaced{
-  top: 8em;
+  top: 10em;
 }
 
 
@@ -93,11 +95,11 @@ div.col-md-4.hooks{
 }
 
 #tape-pic{
-  background: #c4f4eb;
+  background: #86f4eb;
   text-align: center;
 }
 
-.pic-container, #splash{
+.pic-container{
   padding-top: 10%;
   padding-bottom: 10%;
 }
