@@ -41,7 +41,9 @@ a{
    text-align: center;
    width: 400px;
    margin-left: 36%;
-   margin-top: 150px;
+   margin-top: 100px;
+   padding-top: 5%;
+   padding-bottom: 5%;
 }
 
 
@@ -160,7 +162,7 @@ li {
      left: 30px;
      width:100%;
      height:100%;
-     text-align:center;
+  /*   text-align:center;*/
      z-index: 1000;
      color: white;
      line-height: normal;
@@ -171,8 +173,7 @@ li {
 #overlay div {
 
      margin: 100px auto;
-     background-color: black;
-     opacity: .8;
+     background-color: #86f4eb;
      border-radius: 1em;
      padding:15px;
      text-align:center;
@@ -209,13 +210,13 @@ li {
  margin-left: 325px;
 }
 
-#create {
-  width: 500px;
+div#create {
+  width: 60%;;
+  text-align: left;
+  margin-top: 1em;
 }
 
-#overlay-link{
-  color: rgb(240, 0, 255);
-}
+
 
 
 .tape-link{
@@ -282,7 +283,8 @@ li {
 
 
 #message{
-  font-family: 'Permanent Marker', cursive;
+  padding-bottom: 200px;
+  padding-top: 15px;
   color: black;
 }
 
@@ -325,5 +327,59 @@ li {
 }
 
 #custom-submit{
-  color: rgb(240, 0, 255);
+  color: white;
+}
+
+
+input#email.form-control, input#password.form-control, input#user_email.form-control, input#user_name.form-control, input#user_password.form-control  {
+  width: 80%;
+  margin-left: 10%;
+}
+
+input.btn.get-started{
+  background: #ff335f;
+  color: white;
+  width: 80%;
+}
+
+.user-container{
+  margin-top: 5%;
+}
+
+.detail-box{
+  background: #e2f4eb;
+  padding-top: 5%;
+  padding-bottom: 5%;
+}
+
+.user-image{
+  margin: 10%;
+}
+
+
+i.profile-icons{
+  color: black;
+}
+
+i.profile-icons:hover{
+  color: #ff335f;
+  opacity: 1;
+}
+
+div#custom-btn-container{
+  text-align: right;
+  margin: 0;
+  box-shadow: none;
+}
+
+#your-tapes{
+  margin-top: 0;
+}
+
+.edit-details{
+  display: none;
+}
+
+.editing{
+  margin-top: 5px;
 }

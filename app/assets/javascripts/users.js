@@ -8,14 +8,23 @@ function overlay() {
 }
 $(document).ready(function() {
 
-// Tape li Colors
+$('#edit-user').on('click', function(){
+  $('.visible-details').hide();
+  $('.edit-details').show();
+});
 
-// RandomColor = function() {
-//     colors = ['#7dc5fb', '#4c61ff', '#757efb', '#7556fd', '#ff567c', '#ff8c00', '#45d6bd', '#00ffaa', '#1aff87']
-//     return colors[Math.floor(Math.random()*colors.length)];
-// }
-
-// $('.tapes').css('background-color', RandomColor);
+$('#update-user').on('click', function(){
+  var $name = $('#update-name').val();
+  var $city = $('#update-city').val();
+  var $twitter = $('#update-twitter').val();
+  var $id = $('.welcome').attr('id');
+  $.ajax({
+    type: 'PUT',
+    url: '/users/' + $id,
+    data: ({name: $name, city: $city, twitter: $twitter })
+  }).done(function(){
+      location.reload();  });
+  });
 
 function getUser(){
     $.ajax({
@@ -54,11 +63,16 @@ getUser()
      var receiver = $('#receiver').val()
      var message = $('#message').val()
 
-     tape     = new Tape({ name: name, receiver: receiver, message: message });
-     tapeView = new TapeView(tape)
-     tape.create(name, receiver, message)
+     $.ajax({
+        url: '/tapes',
+        method: 'POST',
+        data: ({name:name, receiver: receiver, message: message})
+     }).done(function(data){
+      console.log(data);
+      window.location.replace("/tapes/" + data.id + "/edit");
+     });
 
-  el = document.getElementById("overlay");
+    el = document.getElementById("overlay");
     el.style.visibility = (el.style.visibility == "visible") ? "hidden" : "visible";
     $('#overlay_btn').remove()
     $('#tape-options').css({visibility: 'visible'})

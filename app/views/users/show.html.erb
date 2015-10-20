@@ -1,52 +1,66 @@
-<div id="user_container">
 
-<div class="tape-list">
-      <h3>Your Tapes</h3>
-      <ul id="tapes">
-        <% @tapes.each do |tape| %>
-          <li class="tapes"><img src="<%= tape.img_url %>"width="30px"/>
-            <%= link_to(tape.name, edit_tape_path(tape.id), class: 'tape-link') %>
+<div class="container">
+  <div class="row user-container">
+    <div class="col-md-6 detail-box">
+      <div class="col-md-6 visible-details">
+        <h3>Welcome back, <span class="user-info"><%= @user.name %></span></h3>
+        <h4 class="user-info"><i class="fa fa-check-circle-o"></i> <%= @user.city %></h4>
+        <h4 class="user-info"><i class="fa fa-twitter"></i><%= @user.twitter %></h4>
 
-          </li>
-        <% end %>
-      </ul>
+        <button id="edit-user" type="button" class="btn btn-labeled btn-info" href="#">
+        <span class="btn-label"><i class="fa fa-pencil"></i></span>Edit</button></br></br>
+
+        <i id='overlay-link' class="icons icon-tape_glyph profile-icons" onclick='overlay()'></i>
+       </div>
+
+       <div class="col-md-6 edit-details">
+         <h3 class="welcome" id="<%= @user.id %>">Welcome back, <span class="user-info"><%= @user.name %></span></h3>
+        <input id="update-name" class="form-control editing" type="text" value="<%= @user.name %>">
+        <input id="update-city" class="form-control editing" type="text" value="<%= @user.city %>">
+        <input id="update-twitter" class="form-control editing" type="text" value="<%= @user.twitter %>">
+
+        <button id="update-user" type="button" class="btn btn-labeled btn-info editing" href="#">Update</button></br></br>
+
+       </div>
+
+       <div class="col-md-6">
+        <div class="user-image">
+            <img src="<%= @user.avatar %>">
+        </div>
+       </div>
     </div>
+<!-- tape shelf -->
+  <div class="col-md-6">
+     <h3 id="your-tapes">Your Tapes</h3>
+        <ul id="tapes">
+          <% @tapes.each do |tape| %>
+            <li class="tapes"><img src="<%= tape.img_url %>"width="30px"/>
+              <%= link_to(tape.name, edit_tape_path(tape.id), class: 'tape-link') %>
 
-
-  <div id='overlay_btn'>
-   <a id='overlay-link' href='#' onclick='overlay()'>Make a New Tape</a>
+            </li>
+          <% end %>
+        </ul>
   </div>
 
-  <div id='overlay'>
+<!-- new tape overlay -->
+<div id='overlay'>
      <div id="create">
           <h4>Give Your Tape a Name</h4>
-            <input id='customize' type='text' placeholder='name'>
+            <input id='customize' class='form-control' type='text'>
           <h4>Email of Receiver</h4>
-            <input id='receiver' type='text' placeholder='email'>
+            <input id='receiver' class='form-control' type='text'>
           <h4>Include a Message</h4>
-            <textarea id='message' type='text' placeholder='message' cols="50" rows="10"></textarea><br/>
-            <button id='custom-submit'>Customize</button>
-              <p class='close'><a class='close' href='#' onclick='overlay()'>CLOSE</a></p>
+            <input id='message' class='form-control' type='text' cols="50" rows="10"></textarea><br/>
+            <div id="custom-btn-container">
+              <button id='custom-submit' class='btn'>Customize</button></br></br>
+              <button class='btn'onclick='overlay()'>Cancel</button>
+            </div>
      </div>
-</div>
-  <div id='tape-options'>
-    <%= image_tag('tape_01.png', id:'yellowpink') %>
-    <%= image_tag('tape_02.png', id:'clearblue' ) %>
-    <%= image_tag('tape_03.png', id:'redgreen') %>
-    <%= image_tag('tape_04.png', id:'yellowgreen') %>
-    <%= image_tag('tape_05.png', id:'bluewhite') %>
-    <%= image_tag('tape_06.png', id:'rainbow') %>
-    <%= image_tag('tape_07.png', id:'pink') %>
-    <%= image_tag('tape_08.png', id:'greenyellow') %>
-    <%= image_tag('tape_09.png', id:'black') %>
-    <%= image_tag('tape_10.png', id:'blue') %>
-  </div>
-<div id="boombox">
-       <%= image_tag('booombox_02.png', id:"boombox") %>
-    <div id="edit-tape">
+
     </div>
+  </div>
 </div>
 
 
 
-</div>
+

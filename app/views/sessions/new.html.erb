@@ -3,9 +3,9 @@
     <h1>Login</h1>
     <div>
       <%= form_tag(session_path) do %>
-        <%= text_field_tag :email, value = nil, placeholder: 'Email' %><br/>
-        <%= password_field_tag :password, value = nil, placeholder:'Password' %><br/>
-        <%= submit_tag('Login') %>
+        <%= text_field_tag :email, value = nil, placeholder: 'Email', :class => "form-control" %><br/>
+        <%= password_field_tag :password, value = nil, placeholder:'Password', :class => "form-control" %><br/>
+        <%= submit_tag('LOGIN', :class => 'btn get-started') %>
       <% end %>
       <p style="color: red"><%= flash[:error] %></p>
       <p style="color: green;"><strong><%= flash[:notice] %></strong><p>

@@ -26,7 +26,7 @@
   <div class="row">
     <section id="about" class="col-md-12">
       <div class="col-md-10 col-md-offset-1 top-spaced">
-        <h2 class="gray">How Does it work?</h2>
+        <!-- <h2 class="gray">How Does it work?</h2> -->
       </div>
         <div class="col-md-10 col-md-offset-1 top-spaced">
           <div class="col-md-4 hooks">
@@ -34,24 +34,24 @@
             <h3>CREATE</h3>
             <p>Choose and customize a cassette tape.</p>
             <p>Make it your own.</p>
-            <p class="try">Try it now... </p>
-          </div>
+<!--             <p class="try">Try it now... </p>
+ -->          </div>
           <div class="col-md-4 hooks">
             <hr id="break"></hr>
             <h3>MIX</h3>
             <p>Search for songs and deisgn a playlist.</p>
             <p>Playback, edit, and perfect.</p>
-            <p class="try">Try it now... </p>
-          </div>
+<!--             <p class="try">Try it now... </p>
+ -->          </div>
           <div class="col-md-4 hooks">
             <hr id="break"></hr>
             <h3>SHARE</h3>
             <p>Share your creation with someone special. </p>
             <p>Send your tape with a message. </p>
-            <p class="try">Try it now... </p>
-          </div>
+<!--             <p class="try">Try it now... </p>
+ -->          </div>
             <div id="btn-container" class="col-md-4">
-              <button id="get-started" class="btn">GET STARTED</button>
+              <%= button_to "Try It Out", tapes_path, :class => 'btn get-started', :method => 'post' %>
             </div>
           </div>
     </section>

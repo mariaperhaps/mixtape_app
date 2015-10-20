@@ -1,5 +1,7 @@
 console.log("Tape.js linked");
 
+Backbone.pubSub = _.extend({}, Backbone.Events);
+
 var Tape = Backbone.Model.extend({
   url: '/tapes',
   initialize: function(){
@@ -16,6 +18,7 @@ $(document).ready(function(){
   var PlaylistView = Backbone.View.extend({
     el: '#transport',
     initialize: function(){
+      Backbone.pubSub.on('saved', this.reFetch, this, arguments);
       this.listenTo(this.collection, 'reset', this.playAll)
     },
     events: {
@@ -35,10 +38,10 @@ $(document).ready(function(){
       }
     },
     pauseCurrent: function(){
+      stopSpinning()
       this.collection.currentSong.pause()
       $('#pause i:first-child').removeClass('fa-pause').addClass('fa-play');
       $('#pause').attr('id', 'play');
-      stopSpinning();
     },
     previousSong: function(){
       this.collection.currentSong.stop()
@@ -56,12 +59,16 @@ $(document).ready(function(){
       } else {
         this.collection.models[this.collection.currentIndex].play()
       }
+    },
+    reFetch: function(){
+        song = new Song(arguments[0])
+        this.collection.create(song)
+        console.log(this.collection.models)
     }
   });
 
   var TapeView = Backbone.View.extend({
     initialize: function(){
-
       this.showSongs();
     },
     showSongs: function(){
@@ -146,10 +153,12 @@ $(document).ready(function(){
              name: this.model.title,
              duration: this.model.duration}
            }).done (function(data){
-               var tape = new Tape({id: tape_id})
-
+            Backbone.pubSub.trigger('saved', data);
+             var tape = new Tape({id: tape_id})
                tape.fetch({success: function(tape){
-                  new TapeView({model: tape})
+                tape.songs.fetch({success: function(songs){
+                    new SongsView({collection: songs})
+                  }});
                }})
            });
     }
@@ -193,11 +202,13 @@ $(document).ready(function(){
   tape.fetch()
   new TapeView({model: tape})
 
-function stopSpinning(){
+  function stopSpinning(){
   $('.rotate').each(function(){
     $(this).attr('class', 'spool')
   });
-}
+  }
+
+
 
 
 });

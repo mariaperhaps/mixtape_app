@@ -9,7 +9,6 @@ class TapesController < ApplicationController
   def show
     @tape = Tape.find(params[:id])
     @songs = Song.where(tape_id: params[:id]).order(id: :asc)
-    @message = @tape.message
   end
 
   def new
@@ -21,17 +20,18 @@ class TapesController < ApplicationController
   end
 
   def create
-    Tape.create(name: params[:name], user_id: session[:user_id], receiver: params[:receiver], message: params[:message])
+    @tape = Tape.create(name: params[:name], user_id: session[:user_id], receiver: params[:receiver], message: params[:message])
     tapes = Tape.where(user_id: session[:user_id])
     tape = tapes.last
      respond_to do |format|
+      format.html { redirect_to edit_tape_path(@tape.id) }
       format.json { render :json => tape }
     end
   end
 
   def update
     @tape
-    @tape.update(img_url: params[:img_url])
+    @tape.update(tape_params)
     render json: @tape
   end
 
@@ -50,6 +50,6 @@ class TapesController < ApplicationController
     end
 
     def tape_params
-      params.permit(:name, :message, :receiver, :user_id, :img_url, :id)
+      params.permit(:name, :message, :receiver, :user_id, :img_url, :fill_primary, :fill_secondary, :id)
     end
 end
