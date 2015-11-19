@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151020033347) do
+ActiveRecord::Schema.define(version: 20151030153203) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,7 +36,7 @@ ActiveRecord::Schema.define(version: 20151020033347) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "img_url",        default: "/assets/white_tape.svg"
-    t.string   "fill_primary",   default: "url(#SVGID_10_)"
+    t.string   "fill_primary",   default: "url(#SVGID_5_)"
     t.string   "fill_secondary", default: "#A7A9AC"
   end
 

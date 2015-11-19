@@ -16,8 +16,30 @@ var Song = Backbone.Model.extend({
           sound.play()
     }.bind(this));
   }
-})
+});
 
+
+var SongsCollection = Backbone.Collection.extend({
+  model: Song,
+  currentIndex: 0,
+  currentSong: "",
+  searchedSongs: [],
+  reset: function(){
+    console.log('im in')
+    this.currentIndex = 0;
+    this.models[this.currentIndex].isPlaying = false
+    $('#pause i:first-child').removeClass('fa-pause').addClass('fa-play');
+    $('#pause').attr('id', 'play');
+    stopSpinning()
+  },
+  isItOver: function(){
+    if(this.currentIndex >= this.length || this.currentIndex < 0){
+      return true
+    } else {
+      return false
+    }
+  }
+});
 
 
 function rotateSpools(){
@@ -26,6 +48,11 @@ function rotateSpools(){
   })
 }
 
+function stopSpinning(){
+$('.rotate').each(function(){
+  $(this).attr('class', 'spool')
+});
+}
 
 
 // $(document).ready(function(){
@@ -118,24 +145,6 @@ function rotateSpools(){
 
 // });
 
-  var SongsCollection = Backbone.Collection.extend({
-    model: Song,
-    currentIndex: 0,
-    currentSong: "",
-    searchedSongs: [],
-    reset: function(){
-      this.currentIndex = 0;
-      this.models[this.currentIndex].isPlaying = false
-      $('#pause').removeClass("fa-pause").addClass('fa-play');
-    },
-    isItOver: function(){
-      if(this.currentIndex >= this.length || this.currentIndex < 0){
-        return true
-      } else {
-        return false
-      }
-    }
-  });
 // OLD STUFF
 
 

@@ -44,8 +44,17 @@ class UsersController < ApplicationController
 
 
   def update
+      if params[:user] != nil
+      photo = File.read(params[:user][:avatar].tempfile)
+      filename = "user_#{@user.id}_#{params[:user][:avatar].original_filename}"
+      File.open("app/assets/images/#{filename}", 'w')  { |file| file.write(photo) }
+      @user.avatar = "/assets/#{filename}"
+      @user.save
+      redirect_to(user_path(@user.id))
+    else
       @user.update(user_params)
       render :json => @user
+    end
   end
 
 

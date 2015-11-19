@@ -25,8 +25,30 @@
 
        <div class="col-md-6">
         <div class="user-image">
-            <img src="<%= @user.avatar %>">
+            <img id="user-photo" src="<%= @user.avatar %>" width="200px">
         </div>
+            <%= form_for(@user) do |f| %>
+              <% if @user.errors.any? %>
+                <div id="error_explanation">
+                  <p><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</p>
+                  <ul>
+                  <% @user.errors.full_messages.each do |message| %>
+                    <li style="color: red"><%= message %></li>
+                  <% end %>
+                  </ul>
+                </div>
+              <% end %>
+
+              <p>Add a Pic</p>
+
+              <p>
+                <%= f.file_field :avatar %><br/>
+              </p>
+
+              <p><%= f.submit 'Upload', :id => "upload", :class => 'btn-default' %></p>
+
+          <% end %>
+
        </div>
     </div>
 <!-- tape shelf -->
@@ -50,12 +72,14 @@
           <h4>Email of Receiver</h4>
             <input id='receiver' class='form-control' type='text'>
           <h4>Include a Message</h4>
-            <input id='message' class='form-control' type='text' cols="50" rows="10"></textarea><br/>
+            <input id='message' class='form-control' type='text' cols="50" rows="10"></input><br/>
             <div id="custom-btn-container">
               <button id='custom-submit' class='btn'>Customize</button></br></br>
               <button class='btn'onclick='overlay()'>Cancel</button>
             </div>
      </div>
+
+
 
     </div>
   </div>

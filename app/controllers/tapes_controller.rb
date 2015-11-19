@@ -21,12 +21,7 @@ class TapesController < ApplicationController
 
   def create
     @tape = Tape.create(name: params[:name], user_id: session[:user_id], receiver: params[:receiver], message: params[:message])
-    tapes = Tape.where(user_id: session[:user_id])
-    tape = tapes.last
-     respond_to do |format|
-      format.html { redirect_to edit_tape_path(@tape.id) }
-      format.json { render :json => tape }
-    end
+    render :json => @tape
   end
 
   def update

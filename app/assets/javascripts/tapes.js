@@ -189,7 +189,7 @@ $(document).ready(function(){
       SC.initialize({
         client_id: "d95ac796afeb1568792d9ff7a945e19d",
       });
-      SC.get('/tracks', { q: query, limit: '20' }, function(tracks){
+      SC.get('/tracks', { q: query, limit: '100' }, function(tracks){
           var search = new SearchResultsView({collection: tracks})
       }.bind(this));
 
@@ -202,11 +202,7 @@ $(document).ready(function(){
   tape.fetch()
   new TapeView({model: tape})
 
-  function stopSpinning(){
-  $('.rotate').each(function(){
-    $(this).attr('class', 'spool')
-  });
-  }
+
 
 
 

@@ -138,17 +138,25 @@ getUser()
 
 
 
-  $('#send').on('click', function(){
-    var id = $('img').eq(1).attr('id')
+  $('#review').on('click', function(){
+    var id = $('h1').attr('id')
       console.log('sending')
+        $('.fade-over').show();
+        $('i.fa-spinner').show();
          $.ajax({
           type: "POST",
           url: "/invitations",
           format: "json",
           data: ({id: id})
         }).done (function(data){
-          console.log(data);
-   })
+          $('i.fa-spinner').hide();
+          var $thanks = $('<h1 class="thanks">').text("Your tape has been sent!").appendTo($('.fade-over'))
+          setTimeout(function(){
+            $('.fade-over').fadeOut('slow', function(){
+              $thanks.remove()
+            });
+          }, 2000);
+   });
   });
 
 
