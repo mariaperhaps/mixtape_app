@@ -18,7 +18,6 @@ $(document).ready(function(){
   var PlaylistView = Backbone.View.extend({
     el: '#transport',
     initialize: function(){
-      Backbone.pubSub.on('saved', this.reFetch, this, arguments);
       this.listenTo(this.collection, 'reset', this.playAll)
     },
     events: {
@@ -59,12 +58,8 @@ $(document).ready(function(){
       } else {
         this.collection.models[this.collection.currentIndex].play()
       }
-    },
-    reFetch: function(){
-        song = new Song(arguments[0])
-        this.collection.create(song)
-        console.log(this.collection.models)
     }
+
   });
 
   var TapeView = Backbone.View.extend({
@@ -87,13 +82,13 @@ $(document).ready(function(){
     events: {
       'click .delete-song': 'delete'
     },
+
     render: function(){
       this.$el.html(this.template({song: this.model.toJSON()}))
       return this
     },
     delete: function(){
-      // TODO
-      this.model.destroy();
+      this.model.destroy({success: function(data){Backbone.pubSub.trigger('deleted', data);}});
       console.log('inside delete')
     }
   });
@@ -143,24 +138,30 @@ $(document).ready(function(){
     },
     save: function(){
       tape_id = $('h1').attr('id')
-      $.ajax({
-         type: 'POST',
-           url: '/songs',
-           dataType: 'json',
-           data: {
+      data = {
              soundcloud_id: this.model.id,
              tape_id: tape_id,
              name: this.model.title,
              duration: this.model.duration}
-           }).done (function(data){
-            Backbone.pubSub.trigger('saved', data);
-             var tape = new Tape({id: tape_id})
-               tape.fetch({success: function(tape){
-                tape.songs.fetch({success: function(songs){
-                    new SongsView({collection: songs})
-                  }});
-               }})
-           });
+      Backbone.pubSub.trigger('saved', data)
+      // $.ajax({
+      //      type: 'POST',
+      //      url: '/songs',
+      //      dataType: 'json',
+      //      data: {
+      //        soundcloud_id: this.model.id,
+      //        tape_id: tape_id,
+      //        name: this.model.title,
+      //        duration: this.model.duration}
+      //      }).done (function(data){
+      //       Backbone.pubSub.trigger('saved', data);
+      //        var tape = new Tape({id: tape_id})
+      //          tape.fetch({success: function(tape){
+      //           tape.songs.fetch({success: function(songs){
+      //               new SongsView({collection: songs})
+      //             }});
+      //          }})
+      //      });
     }
   });
 

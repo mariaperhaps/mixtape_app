@@ -23,7 +23,7 @@ class SongsController < ApplicationController
     @song = Song.create(song_params)
      songs = Song.where(tape_id: params[:tape_id])
      song = songs.last
-     render :json => song
+     render :json => songs
   end
 
   def update
