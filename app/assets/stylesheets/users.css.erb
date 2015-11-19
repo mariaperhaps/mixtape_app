@@ -18,18 +18,11 @@ header {
   width: inherit;
   background-color: whitesmoke;
   text-align: right;
-  margin: -10px;
 }
 
 nav ul li {
   display: inline;
  }
-
-#logo {
-  float: left;
-  padding: 20px;
-}
-
 
 
 a{
@@ -45,29 +38,17 @@ a{
    position: absolute;
    z-index: 0;
    background-color: whitesmoke;
-   text-align: center;
-   width: 400px;
-   margin-left: 36%;
-   margin-top: 150px;
+   margin-top: 5%;
+   padding-top: 20px;
+   padding-bottom: 50px;
 }
 
 
-.front-matter:before {
-    content: '';
-    position: absolute;
-    z-index: -1;
-    border: 1px dashed #ccc;
-    top: 5px;
-    bottom: 5px;
-    left: 5px;
-    right: 5px;
 
-
-}
 
 h1 {
-    text-shadow: 0 1px 0 rgba(255, 255, 255, .7), 0px 2px 0 rgba(0, 0, 0, .5);
-    text-transform: uppercase;
+/*    text-shadow: 0 1px 0 rgba(255, 255, 255, .7), 0px 2px 0 rgba(0, 0, 0, .5);
+*/    text-transform: uppercase;
     text-align: center;
     color: #666;
     letter-spacing: 4px;
@@ -95,8 +76,8 @@ h1:before {
 .login-container {
   width: 100%;
 /*  margin-left: -10px;*/
-  margin-top: 10px;
-  height: 900px;
+/*  margin-top: 10px;
+*/  height: 900px;
   border: 1px solid black;
   background-image: url(<%= asset_path 'splash.png' %>);
   background-size: cover;
@@ -169,7 +150,7 @@ li {
      left: 30px;
      /*width:100%;*/
      height:100%;
-     text-align:center;
+  /*   text-align:center;*/
      z-index: 1000;
      color: white;
      line-height: normal;
@@ -181,8 +162,7 @@ li {
 #overlay div {
 
      margin: 100px auto;
-     background-color: black;
-     opacity: .8;
+     background-color: #86f4eb;
      border-radius: 1em;
      padding:15px;
      text-align:center;
@@ -220,13 +200,13 @@ li {
  margin-left: 175px;
 }
 
-#create {
-  width: 500px;
+div#create {
+  width: 60%;;
+  text-align: left;
+  margin-top: 1em;
 }
 
-#overlay-link{
-  color: rgb(240, 0, 255);
-}
+
 
 
 .tape-link{
@@ -286,6 +266,8 @@ li {
   top:1px;
 }
 
+
+
 .close{
   text-align: right;
   color: rgb(240, 0, 255);
@@ -293,11 +275,12 @@ li {
 
 
 #message{
-  font-family: 'Permanent Marker', cursive;
+  padding-bottom: 200px;
+  padding-top: 15px;
   color: black;
 }
 
-.actions{
+/*.actions{
    text-align: center;
    -webkit-box-shadow: 4px 6px 5px 0px rgba(0,0,0,0.75);
    -moz-box-shadow: 4px 6px 5px 0px rgba(0,0,0,0.75);
@@ -322,12 +305,9 @@ li {
     right: 5px;
     box-shadow: 0 0 0 1px #fff;
 }
-
+*/
 
 #new-user-container{
-  width: 1500px;
-  margin-left: -10px;
-  margin-top: 10px;
   height: 900px;
   border: 1px solid black;
   background-image: url(<%= asset_path 'splash.png' %>);
@@ -336,12 +316,90 @@ li {
 }
 
 #custom-submit{
-  color: rgb(240, 0, 255);
+  color: white;
 }
 
+
+form#new_user input, input#password.form-control, input#email.form-control, input.btn{
+  width: 75%;
+  margin-left: 12%;
+}
+
+input.btn.get-started{
+  background: #ff335f;
+  color: white;
+  width: 50%;
+}
+
+input#new-user-btn.btn, input#login-btn.btn{
+  background: #ff335f;
+  color: white;
+}
+
+#user-photo{
+  position: absolute;
+  clip: rect(0px,200px,200px,0px);
+}
+
+.user-container{
+  margin-top: 5%;
+}
+
+.detail-box{
+  background: #e2f4eb;
+  padding-top: 5%;
+  padding-bottom: 5%;
+}
+
+.user-image{
+  height: 200px;
+  margin-top: 10%;
+}
+
+
+i.profile-icons{
+  color: black;
+}
+
+i.profile-icons:hover{
+  color: #ff335f;
+  opacity: 1;
+}
+
+<<<<<<< HEAD
 #drop {
   margin-top: 100px;
   text-align: center;
   font-size: 2em;
   color: white;
 }
+=======
+div#custom-btn-container{
+  text-align: right;
+  margin: 0;
+  box-shadow: none;
+}
+
+#your-tapes{
+  margin-top: 0;
+}
+
+.edit-details{
+  display: none;
+}
+
+.editing{
+  margin-top: 5px;
+}
+
+.signup-link{
+  text-align: center;
+}
+
+#upload{
+  border: 1px solid gray;
+  border-radius: 3px;
+}
+
+
+>>>>>>> backboning

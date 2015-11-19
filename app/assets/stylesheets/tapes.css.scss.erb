@@ -1,0 +1,270 @@
+// Place all the styles related to the Tapes controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+@-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
+@-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
+@keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
+
+body{
+  font-family: 'Permanent Marker', cursive;
+  background-color: #8E8495;
+}
+
+/*#tape_container {
+  width: 350px;
+  height: 350px;
+  margin: 25px;
+  display: inline-block;
+}*/
+
+.center-controls{
+  text-align: center;
+}
+
+#play {
+  margin-left: 1em
+}
+
+#pause {
+  margin-left: 7px;
+}
+
+#transport{
+  margin-left: 25%;
+  margin-top: 1em;
+}
+
+#songs_container {
+  width: 425px;
+  height: 350px;
+  margin: 25px;
+  float: right;
+}
+
+/*#slide {
+  width: 400px;
+  height: 450px;
+  display: inline-block;
+  overflow: scroll;
+  float: right;
+}*/
+
+#search {
+  margin: 10px;
+}
+
+
+#logo{
+  width: 60px;
+  position: relative;
+  float: left;
+  top: 15px;
+  left: 15px;
+}
+
+
+#track_list {
+  background: rgb(252, 248, 248);
+  /*opacity: 0.7;
+  height: 450px;
+  border: 1px solid black;
+  display: inline-block;
+  font-family: 'Permanent Marker', cursive;
+    width: 300px;
+    margin: 0 auto 10px;
+    padding: 6px 5px 4px 42px;
+    position: absolute;
+    color: #444;
+    line-height: 20px;
+    border: 1px solid #d2d2d2;
+
+    background: #fff;
+    background: -webkit-gradient(linear, 0 0, 0 100%, from(#d9eaf3), color-stop(4%, #fff)) 0 4px;
+    background: -webkit-linear-gradient(top, #d9eaf3 0%, #fff 8%) 0 4px;
+    background: -moz-linear-gradient(top, #d9eaf3 0%, #fff 8%) 0 4px;
+    background: -ms-linear-gradient(top, #d9eaf3 0%, #fff 8%) 0 4px;
+    background: -o-linear-gradient(top, #d9eaf3 0%, #fff 8%) 0 4px;
+    background: linear-gradient(top, #d9eaf3 0%, #fff 8%) 0 4px;
+
+    -webkit-background-size: 100% 20px;
+    -moz-background-size: 100% 20px;
+    -ms-background-size: 100% 20px;
+    -o-background-size: 100% 20px;
+    background-size: 100% 20px;
+
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+
+    -webkit-box-shadow: 0 1px 2px rgba(0,0,0,0.07);
+    -moz-box-shadow: 0 1px 2px rgba(0,0,0,0.07);
+    box-shadow: 0 1px 2px rgba(0,0,0,0.07);*/
+}
+
+#track_list h1,
+#track_list h2 {
+    font-size: 16px;
+    line-height: 16px;
+    margin: 0 0 4px;
+}
+#track_list h3,
+#track_list h4,
+#track_list h5 {
+    font-size: 14px;
+    line-height: 16px;
+    margin: 0 0 4px;
+}
+#track_list h4,
+#track_list h5 {
+    font-weight: normal;
+}
+#track_list p {margin: 0 0 20px;}
+#track_list p:last-child {margin: 0;}
+#track_list ul {margin: 0 0 20px;}
+
+ul {
+  padding: 0;
+  font-family: 'Permanent Marker', cursive;
+}
+
+
+#tracks {
+  opacity: 0.7;
+  width: 310px;
+  height: 450px;
+  border: 1px solid black;
+  display: inline-block;
+  font: normal 12px/1.5 "Lucida Grande", arial, sans-serif;
+    width: 300px;
+    margin: 0 auto 10px;
+    padding: 6px 5px 4px 42px;
+    position: absolute;
+    color: #444;
+    line-height: 20px;
+    border: 1px solid #d2d2d2;
+
+    background: #fff;
+    background: -webkit-gradient(linear, 0 0, 0 100%, from(#d9eaf3), color-stop(4%, #fff)) 0 4px;
+    background: -webkit-linear-gradient(top, #d9eaf3 0%, #fff 8%) 0 4px;
+    background: -moz-linear-gradient(top, #d9eaf3 0%, #fff 8%) 0 4px;
+    background: -ms-linear-gradient(top, #d9eaf3 0%, #fff 8%) 0 4px;
+    background: -o-linear-gradient(top, #d9eaf3 0%, #fff 8%) 0 4px;
+    background: linear-gradient(top, #d9eaf3 0%, #fff 8%) 0 4px;
+
+    -webkit-background-size: 100% 20px;
+    -moz-background-size: 100% 20px;
+    -ms-background-size: 100% 20px;
+    -o-background-size: 100% 20px;
+    background-size: 100% 20px;
+
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+
+    -webkit-box-shadow: 0 1px 2px rgba(0,0,0,0.07);
+    -moz-box-shadow: 0 1px 2px rgba(0,0,0,0.07);
+    box-shadow: 0 1px 2px rgba(0,0,0,0.07);
+}
+
+#tracks h1,
+#tracks h2 {
+    font-size: 16px;
+    line-height: 16px;
+    margin: 0 0 4px;
+}
+#tracks h3,
+#tracks h4,
+#tracks h5 {
+    font-size: 14px;
+    line-height: 16px;
+    margin: 0 0 4px;
+}
+#tracks h4,
+#tracks h5 {
+    font-weight: normal;
+}
+#tracks p {margin: 0 0 20px;}
+#tracks p:last-child {margin: 0;}
+#tracks ul {margin: 0 0 20px;}
+
+
+.editing-tape {
+    text-shadow: 0 1px 0 rgba(255, 255, 255, .7), 0px 2px 0 rgba(0, 0, 0, .5);
+    text-transform: uppercase;
+    text-align: left;
+    color: #666;
+    margin-top: 10px;
+    letter-spacing: 4px;
+    font: normal 26px/1 Verdana, Helvetica;
+    position: relative;
+}
+
+#searchsoundcloud {
+  font-size: 14px;
+  width: 200px;
+  margin: 0;
+  display: inline;
+}
+
+.transport{
+  display: inline-block;
+}
+
+.skip{
+  margin-top: .7em;
+}
+
+.add{
+  float: right;
+  color: fuchsia;
+  padding: 0;
+  cursor: pointer;
+}
+
+.rotate{
+  -webkit-animation:spin 4s linear infinite;
+  -moz-animation:spin 4s linear infinite;
+  animation:spin 4s linear infinite;
+  transform-origin: 50% 50%;
+}
+
+div.modal-header{
+  border: none;
+}
+
+#review{
+  color: white;
+  background: #ff335f;
+}
+
+#songs-results{
+  height: 400px;
+  overflow: scroll;
+}
+
+.fade-over{
+  display: none;
+  opacity:0.7;
+  filter: alpha(opacity=20);
+  background-color:#000;
+  width:100%;
+  height:100%;
+  z-index:10;
+  top:0;
+  left:0;
+  position:fixed;
+}
+
+.thanks{
+  color: aliceblue;
+  margin-top: 20%;
+}
+
+i.fa-spinner{
+  position: absolute;
+  display: none;
+  margin-left: 50%;
+  margin-top: 20%;
+  color: aquamarine;
+  z-index: 11;
+}

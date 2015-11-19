@@ -9,7 +9,6 @@ class TapesController < ApplicationController
   def show
     @tape = Tape.find(params[:id])
     @songs = Song.where(tape_id: params[:id]).order(id: :asc)
-    @message = @tape.message
   end
 
   def new
@@ -21,22 +20,17 @@ class TapesController < ApplicationController
   end
 
   def create
-    Tape.create(name: params[:name], user_id: session[:user_id], receiver: params[:receiver], message: params[:message])
-    tapes = Tape.where(user_id: session[:user_id])
-    tape = tapes.last
-     respond_to do |format|
-      format.json { render :json => tape }
-    end
+    @tape = Tape.create(name: params[:name], user_id: session[:user_id], receiver: params[:receiver], message: params[:message])
+    render :json => @tape
   end
 
   def update
     @tape
-    @tape.update(img_url: params[:img_url])
+    @tape.update(tape_params)
     render json: @tape
   end
 
-  # DELETE /tapes/1
-  # DELETE /tapes/1.json
+
   def destroy
     @tape.destroy
     respond_to do |format|
@@ -46,13 +40,11 @@ class TapesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_tape
       @tape = Tape.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def tape_params
-      params.permit(:name, :message, :receiver, :user_id, :img_url, :id)
+      params.permit(:name, :message, :receiver, :user_id, :img_url, :fill_primary, :fill_secondary, :id)
     end
 end

@@ -8,6 +8,26 @@ function overlay() {
 }
 $(document).ready(function() {
 
+
+$('#edit-user').on('click', function(){
+  $('.visible-details').hide();
+  $('.edit-details').show();
+});
+
+$('#update-user').on('click', function(){
+  var $name = $('#update-name').val();
+  var $city = $('#update-city').val();
+  var $twitter = $('#update-twitter').val();
+  var $id = $('.welcome').attr('id');
+  $.ajax({
+    type: 'PUT',
+    url: '/users/' + $id,
+    data: ({name: $name, city: $city, twitter: $twitter })
+  }).done(function(){
+      location.reload();  });
+  });
+
+
 function getUser(){
     $.ajax({
       type: 'GET',
@@ -28,11 +48,16 @@ getUser()
      var receiver = $('#receiver').val()
      var message = $('#message').val()
 
-     tape     = new Tape({ name: name, receiver: receiver, message: message });
-     tapeView = new TapeView(tape)
-     tape.create(name, receiver, message)
+     $.ajax({
+        url: '/tapes',
+        method: 'POST',
+        data: ({name:name, receiver: receiver, message: message})
+     }).done(function(data){
+      console.log(data);
+      window.location.replace("/tapes/" + data.id + "/edit");
+     });
 
-  el = document.getElementById("overlay");
+    el = document.getElementById("overlay");
     el.style.visibility = (el.style.visibility == "visible") ? "hidden" : "visible";
     $('#overlay_btn').remove()
     $('#tape-options').css({visibility: 'visible'})
@@ -100,17 +125,25 @@ getUser()
 
 
 
-  $('#send').on('click', function(){
-    var id = $('img').eq(1).attr('id')
+  $('#review').on('click', function(){
+    var id = $('h1').attr('id')
       console.log('sending')
+        $('.fade-over').show();
+        $('i.fa-spinner').show();
          $.ajax({
           type: "POST",
           url: "/invitations",
           format: "json",
           data: ({id: id})
         }).done (function(data){
-          console.log(data);
-   })
+          $('i.fa-spinner').hide();
+          var $thanks = $('<h1 class="thanks">').text("Your tape has been sent!").appendTo($('.fade-over'))
+          setTimeout(function(){
+            $('.fade-over').fadeOut('slow', function(){
+              $thanks.remove()
+            });
+          }, 2000);
+   });
   });
 
 

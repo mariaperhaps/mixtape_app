@@ -20,7 +20,7 @@ class UsersController < ApplicationController
   # GET /users/1.json
   def show
     @tapes = Tape.where(user_id: session[:user_id])
-    user = User.find(params[:id])
+    @user = User.find(params[:id])
   end
 
   # GET /users/new
@@ -28,15 +28,10 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
-  # GET /users/1/edit
-  def edit
-  end
 
   def password
   end
 
-  # POST /users
-  # POST /users.json
   def create
     @user = User.new(user_params)
      if @user.save
@@ -47,15 +42,22 @@ class UsersController < ApplicationController
     end
   end
 
-  # PATCH/PUT /users/1
-  # PATCH/PUT /users/1.json
+
   def update
+      if params[:user] != nil
+      photo = File.read(params[:user][:avatar].tempfile)
+      filename = "user_#{@user.id}_#{params[:user][:avatar].original_filename}"
+      File.open("app/assets/images/#{filename}", 'w')  { |file| file.write(photo) }
+      @user.avatar = "/assets/#{filename}"
+      @user.save
+      redirect_to(user_path(@user.id))
+    else
       @user.update(user_params)
-      redirect_to(user_path(session[:user_id]))
+      render :json => @user
+    end
   end
 
-  # DELETE /users/1
-  # DELETE /users/1.json
+
   def destroy
     if current_user == @user
       @user.destroy
@@ -79,11 +81,7 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(
-        :name,
-        :email,
-        :password
-        )
+      params.permit(:name, :email, :password, :city, :twitter)
     end
 
     def user_password_params
@@ -98,12 +96,6 @@ class UsersController < ApplicationController
       @user = User.find_by(id: params[:id])
       redirect_to root_path if !@user
     end
-
-    # def authorize_admin_only
-    #   unless current_user.is_admin?
-    #     redirect_to user_path(current_user)
-    #   end
-    # end
 
     def authorize_user_only
       unless current_user == @user

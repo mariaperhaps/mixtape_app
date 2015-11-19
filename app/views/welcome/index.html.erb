@@ -1,0 +1,78 @@
+<div class="container-fluid">
+  <div class="row">
+    <!-- splash -->
+    <section id="splash" class="col-md-12">
+
+      <div class="row">
+        <div class="col-md-12">
+          <h1 id="title">MIXTAPE</h1>
+        </div>
+      </div>
+
+        <div class="col-md-12">
+          <%= image_tag('tape_hero.png', id: 'tape-hero') %>
+        </div>
+
+        <div class="col-md-4 col-md-offset-4  icon-container">
+          <span class="icons icon-tape_glyph"></span>
+          <span class="icons icon-notes_glyph"></span>
+          <span class="icons icon-phones_glyph"></span>
+          <span class="icons icon-heart_glyph"></span>
+        </div>
+    </section>
+  </div>
+
+<!-- about -->
+  <div class="row">
+    <section id="about" class="col-md-12">
+      <div class="col-md-10 col-md-offset-1 top-spaced">
+        <!-- <h2 class="gray">How Does it work?</h2> -->
+      </div>
+        <div class="col-md-10 col-md-offset-1 top-spaced">
+          <div class="col-md-4 hooks">
+            <hr id="break"></hr>
+            <h3>CREATE</h3>
+            <p>Choose and customize a cassette tape.</p>
+            <p>Make it your own.</p>
+<!--             <p class="try">Try it now... </p>
+ -->          </div>
+          <div class="col-md-4 hooks">
+            <hr id="break"></hr>
+            <h3>MIX</h3>
+            <p>Search for songs and deisgn a playlist.</p>
+            <p>Playback, edit, and perfect.</p>
+<!--             <p class="try">Try it now... </p>
+ -->          </div>
+          <div class="col-md-4 hooks">
+            <hr id="break"></hr>
+            <h3>SHARE</h3>
+            <p>Share your creation with someone special. </p>
+            <p>Send your tape with a message. </p>
+<!--             <p class="try">Try it now... </p>
+ -->          </div>
+            <div id="btn-container" class="col-md-4">
+              <%= button_to "Try It Out", login_path, :class => 'btn get-started', :method => 'get' %>
+            </div>
+          </div>
+    </section>
+  </div>
+
+<!-- tape grid -->
+    <div class="row">
+      <section id="tape-pic" class="col-md-12">
+        <div class="col-md-12 pic-container">
+          <%= image_tag('tape_grid.png', id: 'tape-grid') %>
+        </div>
+      </section>
+    </div>
+
+<!-- contact -->
+  <div class="row">
+    <section id="contact" class="col-md-12">
+      <i class="fa fa-github-square fa-3x social"></i>
+      <i class="fa fa-linkedin-square fa-3x social"></i>
+      <i class="fa fa-twitter-square fa-3x social"></i>
+    </section>
+  </div>
+
+</div>
