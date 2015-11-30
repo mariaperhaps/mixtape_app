@@ -25,9 +25,10 @@
 
        <div class="col-md-6">
         <div class="user-image">
-            <img id="user-photo" src="<%= @user.avatar %>" width="200px">
+          <% image = @user.avatar %>
+           <%= image_tag("#{image}", :id => "user-photo", :width => "200px") %>
         </div>
-          <% if @user.avatar == nil %>
+          <% if @user.avatar == "default-avatar.png" %>
             <%= form_for(@user) do |f| %>
               <% if @user.errors.any? %>
                 <div id="error_explanation">
