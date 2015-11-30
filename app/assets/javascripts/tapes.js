@@ -27,19 +27,23 @@ $(document).ready(function(){
       'click #skip-ahead': 'nextSong'
     },
     playAll: function(){
-      rotateSpools()
-      $('#play i:first-child').removeClass('fa-play').addClass('fa-pause');
-      $('#play').attr('id', 'pause')
-      if (this.collection.models[this.collection.currentIndex].isPlaying == false){
-        this.collection.models[this.collection.currentIndex].play()
+      if(this.collection.length == 0){
+        swal({   title: "Uh Oh!",   text: "There are no songs in your Playlist!",   imageUrl: "http://vikkichowney.com/wp-content/uploads/2012/04/mixtapecartooncartoondrawingcassettedrawingforyou-17ffe37d5fdc17ff280823b265287068_h.jpg",   confirmButtonText: "Start Mixing" });
       } else {
-        this.collection.currentSong.play()
+        rotateSpools()
+        $('#play').removeClass('fa-play').addClass('fa-pause');
+        $('#play').attr('id', 'pause')
+        if (this.collection.models[this.collection.currentIndex].isPlaying == false){
+          this.collection.models[this.collection.currentIndex].play()
+        } else {
+          this.collection.currentSong.play()
+        }
       }
     },
     pauseCurrent: function(){
       stopSpinning()
       this.collection.currentSong.pause()
-      $('#pause i:first-child').removeClass('fa-pause').addClass('fa-play');
+      $('#pause').removeClass('fa-pause').addClass('fa-play');
       $('#pause').attr('id', 'play');
     },
     previousSong: function(){

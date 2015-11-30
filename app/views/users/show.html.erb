@@ -27,6 +27,7 @@
         <div class="user-image">
             <img id="user-photo" src="<%= @user.avatar %>" width="200px">
         </div>
+          <% if @user.avatar == nil %>
             <%= form_for(@user) do |f| %>
               <% if @user.errors.any? %>
                 <div id="error_explanation">
@@ -48,12 +49,16 @@
               <p><%= f.submit 'Upload', :id => "upload", :class => 'btn-default' %></p>
 
           <% end %>
-
+        <% end %>
        </div>
     </div>
 <!-- tape shelf -->
   <div class="col-md-6">
      <h3 id="your-tapes">Your Tapes</h3>
+      <% if @user.tapes.length == 0 %>
+        <h4 style="color: red;">You don't have any tapes, Make one now!</h4>
+        <button class="btn make-tape" onclick='overlay()'>Make a Tape</button>
+      <% else %>
         <ul id="tapes">
           <% @tapes.each do |tape| %>
             <li class="tapes"><img src="<%= tape.img_url %>"width="30px"/>
@@ -62,6 +67,7 @@
             </li>
           <% end %>
         </ul>
+      <% end %>
   </div>
 
 <!-- new tape overlay -->

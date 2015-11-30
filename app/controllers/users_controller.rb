@@ -52,7 +52,12 @@ class UsersController < ApplicationController
       @user.save
       redirect_to(user_path(@user.id))
     else
-      @user.update(user_params)
+      user = {
+        name: params[:name],
+        city: params[:city],
+        twitter: params[:twitter]
+      }
+      @user.update(user)
       render :json => @user
     end
   end
@@ -81,7 +86,7 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.permit(:name, :email, :password, :city, :twitter)
+      params.require(:user).permit(:name, :email, :password, :city, :twitter)
     end
 
     def user_password_params

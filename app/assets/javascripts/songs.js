@@ -32,7 +32,7 @@ var SongsCollection = Backbone.Collection.extend({
     console.log('im in')
     this.currentIndex = 0;
     this.models[this.currentIndex].isPlaying = false
-    $('#pause i:first-child').removeClass('fa-pause').addClass('fa-play');
+    $('#pause' ).removeClass('fa-pause').addClass('fa-play');
     $('#pause').attr('id', 'play');
     stopSpinning()
   },
