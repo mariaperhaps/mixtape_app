@@ -148,24 +148,6 @@ $(document).ready(function(){
              name: this.model.title,
              duration: this.model.duration}
       Backbone.pubSub.trigger('saved', data)
-      // $.ajax({
-      //      type: 'POST',
-      //      url: '/songs',
-      //      dataType: 'json',
-      //      data: {
-      //        soundcloud_id: this.model.id,
-      //        tape_id: tape_id,
-      //        name: this.model.title,
-      //        duration: this.model.duration}
-      //      }).done (function(data){
-      //       Backbone.pubSub.trigger('saved', data);
-      //        var tape = new Tape({id: tape_id})
-      //          tape.fetch({success: function(tape){
-      //           tape.songs.fetch({success: function(songs){
-      //               new SongsView({collection: songs})
-      //             }});
-      //          }})
-      //      });
     }
   });
 
@@ -221,45 +203,4 @@ $(document).ready(function(){
 
 
 
-
-
-// OLD STUFF
-
-// function Tape(data) {
-//   this.img_url = data.img_url;
-//   this.name = data.name;
-//   this.id = data.id;
-//   this.receiver = data.receiver;
-// };
-
-
-// Tape.prototype.destroy = function(){
-//   $.ajax({
-//        type: "DELETE",
-//        url: "/tapes/" + this.id,
-//     });
-// };
-
-// Tape.prototype.create = function(name, receiver, message){
-//   $.ajax({
-//        type: "POST",
-//        url: "/tapes",
-//        dataType: 'json',
-//        data: {name: name, receiver: receiver, message: message}
-//     }).done (function(data){
-//       // console.log(data);
-//       currentTapeId = data.id
-//     })
-// };
-
-// Tape.prototype.update = function(img_url){
-//   $.ajax({
-//     url: "/tapes/" + currentTapeId,
-//     data: {img_url: img_url},
-//     type: "PUT"
-//   }).done(function(response){
-//     console.log("response");
-//     window.location = "/tapes/" + currentTapeId + "/edit";
-//   });
-// };
 
