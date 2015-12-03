@@ -62,7 +62,7 @@
       <% else %>
         <ul id="tapes">
           <% @tapes.each do |tape| %>
-            <li class="tapes"><img src="<%= tape.img_url %>"width="30px"/>
+            <li class="tapes"><%= image_tag(tape.img_url, :width => "50px") %>
               <%= link_to(tape.name, edit_tape_path(tape.id), class: 'tape-link') %>
 
             </li>
