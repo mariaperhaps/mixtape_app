@@ -56,41 +56,6 @@ function rotateSpools(){
 }
 
 
-
-//Get All Songs
-
-// $(document).ready(function(){
-//   // playlist = []
-
-//   function loadSongs(){
-//     $('#page_list').empty()
-//     var id = $('img').eq(1).attr('id')
-//     $.ajax({
-//       url: "/tapes/" + id + "/songs",
-//       format: "json"
-//     }).done(function(data){
-//       console.log(data);
-//       for(var i = 0; i < data.length; i++){
-//         var newSong = new Song(data[i]);
-//         // playlist.push(newSong);
-//         newSongView = new SongView(newSong);
-//         $('<li>').html('<span>X</span>' + newSongView.model.name).attr('id',newSongView.model.id).on('click', function(){
-//           this.remove()
-//            $.ajax({
-//                type: "DELETE",
-//                url: "/songs/" + this.id,
-//             }).done (function(data){
-//             });
-//               console.log('put delete function here');
-//             }).appendTo($('#track_list'));
-//       }
-//     });
-//   };
-
-//   loadSongs()
-
-
-
 function stopSpinning(){
 $('.rotate').each(function(){
   $(this).attr('class', 'spool')

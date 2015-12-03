@@ -34,7 +34,6 @@ function getUser(){
       url: '/users',
       dataType: 'json'
     }).done (function(data){
-      // console.log(data);
       user_id = data.id
    })
   };
