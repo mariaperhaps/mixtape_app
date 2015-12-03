@@ -28,7 +28,6 @@
 
            <%= image_tag(@user.avatar, :id => "user-photo", :width => "200px") %>
         </div>
-          <% if @user.avatar == "default-avatar.png" %>
             <%= form_for(@user) do |f| %>
               <% if @user.errors.any? %>
                 <div id="error_explanation">
@@ -50,7 +49,7 @@
               <p><%= f.submit 'Upload', :id => "upload", :class => 'btn-default' %></p>
 
           <% end %>
-        <% end %>
+
        </div>
     </div>
 <!-- tape shelf -->

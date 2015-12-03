@@ -41,7 +41,7 @@ class UsersController < ApplicationController
       if params[:user] != nil
       photo = File.read(params[:user][:avatar].tempfile)
       filename = "user_#{@user.id}_#{params[:user][:avatar].original_filename}"
-      File.open("app/assets/#{filename}", 'w')  { |file| file.write(photo) }
+      File.open("public/assets/#{filename}", 'w')  { |file| file.write(photo) }
       @user.avatar = "#{filename}"
       @user.save
       redirect_to(user_path(@user.id))
