@@ -5,7 +5,7 @@ class InvitationsController < ApplicationController
     receiver = tape.receiver
     message = tape.message
     id = tape.id
-    tape_link = "https://mysterious-woodland-7075.herokuapp.com/tapes/#{id}"
+    tape_link = "https://obscure-retreat-5234.herokuapp.com/tapes/#{id}"
     user = User.find(tape.user_id)
     sender = user.name
     deliver(sender, receiver, tape_link, message)
