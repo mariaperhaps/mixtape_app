@@ -39,11 +39,10 @@ class UsersController < ApplicationController
 
   def update
       if params[:user] != nil
-      photo = File.read(params[:user][:avatar].tempfile)
-      filename = "user_#{@user.id}_#{params[:user][:avatar].original_filename}"
-      File.open("public/assets/#{filename}", 'w')  { |file| file.write(photo) }
-      @user.avatar = "#{filename}"
-      @user.save
+      # photo = File.read(params[:user][:avatar].tempfile)
+      # filename = "user_#{@user.id}_#{params[:user][:avatar].original_filename}"
+      # File.open("public/assets/#{filename}", 'w')  { |file| file.write(photo) }
+      @user.update(user_params)
       redirect_to(user_path(@user.id))
     else
       user = {
@@ -78,7 +77,7 @@ class UsersController < ApplicationController
     end
 
     def user_params
-      params.require(:user).permit(:name, :email, :password, :city, :twitter)
+      params.require(:user).permit(:name, :email, :password, :city, :twitter, :avatar)
     end
 
     def user_password_params

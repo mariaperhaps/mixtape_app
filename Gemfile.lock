@@ -36,6 +36,10 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
+    climate_control (0.0.3)
+      activesupport (>= 3.0)
+    cocaine (0.5.7)
+      climate_control (>= 0.0.3, < 1.0)
     coderay (1.1.0)
     coffee-rails (4.0.1)
       coffee-script (>= 2.2.0)
@@ -66,11 +70,18 @@ GEM
       mime-types (>= 1.16, < 3)
     method_source (0.8.2)
     mime-types (2.4.3)
+    mimemagic (0.3.0)
     mini_portile (0.6.2)
     minitest (5.4.2)
     multi_json (1.10.1)
     nokogiri (1.6.6.2)
       mini_portile (~> 0.6.0)
+    paperclip (4.3.1)
+      activemodel (>= 3.2.0)
+      activesupport (>= 3.2.0)
+      cocaine (~> 0.5.5)
+      mime-types
+      mimemagic (= 0.3.0)
     pg (0.17.1)
     pony (1.11)
       mail (>= 2.0)
@@ -164,6 +175,7 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   jquery-turbolinks
+  paperclip (~> 4.3)
   pg
   pony
   pry

@@ -26,9 +26,9 @@
        <div class="col-md-6">
         <div class="user-image">
 
-           <%= image_tag(@user.avatar, :id => "user-photo", :width => "200px") %>
+           <%= image_tag(@user.avatar.url, :id => "user-photo", :width => "200px") %>
         </div>
-            <%= form_for(@user) do |f| %>
+            <%= form_for @user, html: { multipart: true } do |f| %>
               <% if @user.errors.any? %>
                 <div id="error_explanation">
                   <p><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</p>
@@ -40,7 +40,7 @@
                 </div>
               <% end %>
 
-              <p>Add a Pic</p>
+              <p>Change Profile Pic</p>
 
               <p>
                 <%= f.file_field :avatar %><br/>
