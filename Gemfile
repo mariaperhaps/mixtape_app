@@ -37,6 +37,8 @@ gem 'thor'
 
 gem "paperclip", "~> 4.3"
 
+
+
 group :development, :test do
   gem 'rspec-rails'
   gem 'capybara'

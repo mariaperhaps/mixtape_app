@@ -44,6 +44,8 @@ Rails.application.routes.draw do
       resource :songs
     end
 
+
+
   # Example resource route with more complex sub-resources:
   #   resources :products do
   #     resources :comments
