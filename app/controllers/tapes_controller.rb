@@ -1,5 +1,6 @@
 class TapesController < ApplicationController
   before_action :set_tape, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate,  except: [:show]
 
   def index
     @tapes = Tape.where(user_id: session[:user_id])
