@@ -37,6 +37,8 @@ gem 'thor'
 
 gem "paperclip", "~> 4.3"
 
+gem 'aws-sdk'
+
 
 
 group :development, :test do
