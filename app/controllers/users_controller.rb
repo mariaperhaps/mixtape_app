@@ -1,7 +1,6 @@
 class UsersController < ApplicationController
   before_action :authenticate,            except: [:new, :create]
   before_action :load_user,               except: [:index, :new, :create]
-  before_action :authorize_user_or_admin, except: [:index, :show, :new, :create]
 
 
   def index
@@ -39,9 +38,6 @@ class UsersController < ApplicationController
 
   def update
       if params[:user] != nil
-      # photo = File.read(params[:user][:avatar].tempfile)
-      # filename = "user_#{@user.id}_#{params[:user][:avatar].original_filename}"
-      # File.open("public/assets/#{filename}", 'w')  { |file| file.write(photo) }
       @user.update(user_params)
       redirect_to(user_path(@user.id))
     else
@@ -60,7 +56,6 @@ class UsersController < ApplicationController
     if current_user == @user
       @user.destroy
       log_out!
-      flash[:notice] = "Chao tam biet!"
       redirect_to(root_path)
     else
       @user.destroy
