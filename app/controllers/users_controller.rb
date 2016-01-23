@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_action :authenticate,            except: [:new, :create]
   before_action :load_user,               except: [:index, :new, :create]
+  before_action :authorize_user,          except: [:new, :create]
 
 
   def index
@@ -56,6 +57,7 @@ class UsersController < ApplicationController
     if current_user == @user
       @user.destroy
       log_out!
+
       redirect_to(root_path)
     else
       @user.destroy
@@ -88,14 +90,8 @@ class UsersController < ApplicationController
       redirect_to root_path if !@user
     end
 
-    def authorize_user_only
+    def authorize_user
       unless current_user == @user
-        redirect_to user_path(current_user)
-      end
-    end
-
-    def authorize_user_or_admin
-      unless current_user == @user || current_user.is_admin?
         redirect_to user_path(current_user)
       end
     end
