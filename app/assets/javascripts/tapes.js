@@ -41,18 +41,18 @@ $(document).ready(function(){
       }
     },
     pauseCurrent: function(){
-      stopSpinning()
+      stopSpinning();
       this.collection.currentSong.pause()
       $('#pause').removeClass('fa-pause').addClass('fa-play');
       $('#pause').attr('id', 'play');
     },
     previousSong: function(){
-      this.collection.currentSong.stop()
+      this.collection.currentSong.pause();
       this.collection.currentIndex--
       this.checkIfOver();
     },
     nextSong: function(){
-      this.collection.currentSong.stop()
+      this.collection.currentSong.pause();
       this.collection.currentIndex++
       this.checkIfOver()
     },
@@ -131,7 +131,7 @@ $(document).ready(function(){
        SC.initialize({
          client_id: "d95ac796afeb1568792d9ff7a945e19d",
        });
-       SC.stream("/tracks/" + this.model.id, function(sound){
+       SC.stream("/tracks/" + this.model.id).then(function(sound){
           sound.play()
           this.currentSong = sound
        }.bind(this));
@@ -168,19 +168,21 @@ $(document).ready(function(){
     var SearchForm = Backbone.View.extend({
     el: '#search-songs',
     events: {
-      'click #song-search-button': 'search'
+      'click #song-search-button': 'search',
+      'keyup #searchsoundcloud': 'search'
     },
-    search: function(){
-      var query = $('#searchsoundcloud').val()
+    search: function(e){
+      if(e.keyCode == 13 || e.type =='click'){
+        var query = $('#searchsoundcloud').val()
+        SC.initialize({
+          client_id: "d95ac796afeb1568792d9ff7a945e19d"
+        });
+        SC.get('/tracks', { q: query, limit: '100' }).then( function(tracks){
+            var search = new SearchResultsView({collection: tracks})
+        }.bind(this));
 
-      SC.initialize({
-        client_id: "d95ac796afeb1568792d9ff7a945e19d",
-      });
-      SC.get('/tracks', { q: query, limit: '100' }, function(tracks){
-          var search = new SearchResultsView({collection: tracks})
-      }.bind(this));
-
-      $('#searchsoundcloud').val("")
+        $('#searchsoundcloud').val("")
+      }
     }
   })
 
@@ -188,7 +190,6 @@ $(document).ready(function(){
   var tape = new Tape({id: currentTapeId})
   tape.fetch()
   new TapeView({model: tape})
-
 
 
 

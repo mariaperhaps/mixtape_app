@@ -4,17 +4,26 @@ var Song = Backbone.Model.extend({
   urlRoot: '/songs',
   isPlaying: false,
   play: function(){
-   SC.initialize({
-      client_id: "d95ac796afeb1568792d9ff7a945e19d",
-     });
-       SC.stream("/tracks/" + this.attributes.soundcloud_id,{onfinish: function(){
+    SC.initialize({
+      client_id: "d95ac796afeb1568792d9ff7a945e19d"
+    });
+    SC.stream('/tracks/' + this.attributes.soundcloud_id).then (function(sound) {
+        sound.play();
+        this.collection.currentSong = sound
+        this.isPlaying = true
+        sound.on('finish', function() {
           this.collection.currentIndex ++
           this.collection.isItOver() ? this.collection.reset() : this.collection.trigger('reset')
-        }.bind(this)}, function(sound){
-          this.collection.currentSong = sound
-          this.isPlaying = true
-          sound.play()
+        });
     }.bind(this));
+    //    SC.stream("/tracks/" + this.attributes.soundcloud_id,{onfinish: function(){
+    //       this.collection.currentIndex ++
+    //       this.collection.isItOver() ? this.collection.reset() : this.collection.trigger('reset')
+    //     }.bind(this)}, function(sound){
+    //       this.collection.currentSong = sound
+    //       this.isPlaying = true
+    //       sound.play()
+    // }.bind(this));
   }
 });
 

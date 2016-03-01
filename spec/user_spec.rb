@@ -10,4 +10,6 @@ describe User do
     expect(user_2.valid?).to be(false)
     expect(user_2.errors.messages[:password][0]).to eq("can't be blank")
   end
+
+
 end

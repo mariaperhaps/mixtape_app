@@ -2,7 +2,6 @@ require "rails_helper"
 require 'pry'
 
 feature 'Sign-Up' do
-
   scenario "A User can create an account" do
     visit "/users/new"
     fill_in "email", :with => "m@m.com"
@@ -28,11 +27,8 @@ end
 feature "Login" do
   scenario "User needs a password to login" do
     visit "/login"
-
-
     fill_in "email", :with => "m@m.com"
     click_button "LOGIN"
-
     expect(page).to have_text("Incorrect username or password.")
   end
 
@@ -42,8 +38,7 @@ feature "Login" do
     fill_in "email", :with => "m@m.com"
     fill_in "password", :with => "1111"
     click_button "LOGIN"
+    binding.pry
     expect(page).to have_text("Your Tapes")
   end
-
-
 end
